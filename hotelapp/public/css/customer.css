@@ -1,0 +1,35 @@
+.icon-nav{
+    position: relative;
+    color: #FFFFFF8C;
+}
+
+.icon-nav:hover{
+    color:white;
+}
+.circle{
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-size:  12px;
+    top: 10px;
+    right: 140px;
+}
+
+section{
+    min-height: 80vh;
+}
+
+footer{
+    position:  static;
+    bottom: 0;
+    background-color: #025464;
+    color: white
+}
+
+.d-flex{
+    
+}

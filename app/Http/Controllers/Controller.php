@@ -17,4 +17,25 @@ class Controller extends BaseController
         ]);
 
     }
+    public function shop()
+    {
+        return view('pelanggan.layout.index', [
+            'title' => 'Home',
+        ]);
+
+    }
+    public function transaksi()
+    {
+        return view('pelanggan.layout.index', [
+            'title' => 'Home',
+        ]);
+
+    }
+    public function contact()
+    {
+        return view('pelanggan.layout.index', [
+            'title' => 'Home',
+        ]);
+
+    }
 }

@@ -1,3 +1,10 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .icon-nav{
     position: relative;
     color: #FFFFFF8C;
@@ -28,8 +35,4 @@ footer{
     bottom: 0;
     background-color: #025464;
     color: white
-}
-
-.d-flex{
-    
 }

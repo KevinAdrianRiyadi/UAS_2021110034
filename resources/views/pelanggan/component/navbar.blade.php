@@ -18,12 +18,8 @@
         </ul>
          <div class="d-flex gap-4 align-items-center">
             <button class="btn btn-success" type="button">Login | Register</button>
-            <div class="notif "></div>
-            <a href="#" class="fs-5">
-              <div class="circle"></div>
-                <i class="fa-solid fa-bag-shopping">
-
-                </i>
+            
+              </i>
             </a>
          </div>
       </div>

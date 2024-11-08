@@ -1,10 +1,7 @@
 @extends('pelanggan.layout.index')
 
 @section('content')
-    @if(auth()->user())
-    <div class="text-black text-xl"> Welcome ! <span class="text-capitalize">{{auth()->user()->name}}</span></div>
-    @else
-    @endif
+
     <div class="content mt-5 d-flex flex-lg-wrap gap-5 mb-5">
         {{-- @foreach($data as $item) --}}
             <div class="card" style="width: 220px;">

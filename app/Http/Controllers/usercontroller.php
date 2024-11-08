@@ -22,21 +22,25 @@ class usercontroller extends Controller
         $data['password'] = Hash::make($data['password']);
         // dd($data);
         userdata::create($data);
-        
-        return redirect()->route('Home')->with('success','Registrasi Berhasil, Silakan Login!');
+
+        return redirect()->route('Home')->with('success', 'Registrasi Berhasil, Silakan Login!');
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         request()->session()->invalidate();
 
         request()->session()->regenerateToken();
+
+        return redirect()->route('Home');
     }
 
     public function login(Request $request)
     {
         // dd($request);
-        $data = $request->validate([
+        $data = $request->validate(
+            [
                 'email' => 'required',
                 'password' => 'required'
             ]

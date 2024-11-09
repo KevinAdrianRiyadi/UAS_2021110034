@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Edit Makanan</title>
+    <title>Edit dessert</title>
 </head>
 
 <body>
@@ -22,22 +22,22 @@
             </div>
         @endif
 
-        <form action="{{ route('updatemakanan', $data->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('updatedessert', $data->id) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Nama Makanan</label>
+                <label for="name" class="form-label">Nama dessert</label>
                 <input type="text" class="form-control" id="nama" name="nama" required
                 value="{{$data->nama}}">
                 
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Kategori Makanan</label>
+                <label for="name" class="form-label">Kategori dessert</label>
                 <select class="primary_type" aria-label="Default select example" name="kategori">
                     <option selected value="{{$data->kategori}}">{{$data->kategori}}</option>
-                    <option value="IndonesianFood">Indonesian Food</option>
-                    <option value="WesternFood">Western Food</option>
-                    <option value="KoreanFood">Korean Food</option>
+                    <option value="IndonesianFood">Ice Cream</option>
+                    <option value="WesternFood">Cake</option>
+                    <option value="KoreanFood">Waffle</option>
                 </select>
             </div>
             <div class="mb-3">

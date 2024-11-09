@@ -9,14 +9,20 @@ use Illuminate\Http\Request;
 
 class admincontroller extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $datamakanan = makanan::all();
         $dataminuman = minuman::all();
         $datadessert = dessert::all();
 
-        
-        return view ('pelanggan.page.adminmenu', compact('datamakanan', 'dataminuman', 'datadessert'));
-    }
+        $title = 'AdminMenu';
 
-    
+        // Merge all collections into one
+        // $data = $datamakanan->merge($dataminuman)->merge($datadessert)->flatten();
+        $data = collect([$datamakanan, $dataminuman, $datadessert])->flatten();
+        // dd($data);
+
+
+        return view('pelanggan.page.adminmenu', compact('title', 'data', 'datamakanan', 'dataminuman', 'datadessert'));
+    }
 }

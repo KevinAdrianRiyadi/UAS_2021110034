@@ -1,13 +1,15 @@
+
+
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">Makanan View</h2>
+        <h2 class="mb-4">minuman View</h2>
 
         {{-- <form action="{{ route('logout') }}" method="POST">
         @csrf
         <button class="btn btn-primary mb-2">Logout</button>
     </form> --}}
 
-        <a href="/tambahmakananview">
+        <a href="/tambahminumanview">
             <button class="btn btn-primary mb-3">Add Item</button>
         </a>
         <table class="table table-striped">
@@ -21,7 +23,7 @@
                 </tr>
             </thead>
             <tbody id="itemTable">
-                @foreach ($datamakanan as $item)
+                @foreach ($dataminuman as $item)
                     <tr>
                         {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
                         <td>{{ $item->id }}</td>
@@ -32,8 +34,8 @@
                         <td>{{ $item->stok }}</td>
                         <td>
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('editmakanan', $item->id) }}" class="btn btn-primary me-2">Edit</a>
-                                <form action="{{ route('deletemakanan', $item->id) }}" method="POST"
+                                <a href="{{ route('editminuman', $item->id) }}" class="btn btn-primary me-2">Edit</a>
+                                <form action="{{ route('deleteminuman', $item->id) }}" method="POST"
                                     onsubmit="return confirm('Are you sure you want to delete this item?');">
                                     @csrf
                                     @method('DELETE')

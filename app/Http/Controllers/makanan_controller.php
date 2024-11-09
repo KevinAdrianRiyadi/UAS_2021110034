@@ -30,15 +30,16 @@ class makanan_controller extends Controller
             'harga' => $request->harga,
             'stok' => $request->stok
         ]);
+        $data['jenis'] = 'makanan';
         makanan::create($data);
-       return redirect()->route('viewmakanan');
+       return redirect()->route('adminmenu');
     }
     public function deletemakanan($id){
         
         $data = makanan::find($id);
         // dd($data);
         $data->delete();
-        return redirect()->route('viewmakanan');
+        return redirect()->route('adminmenu');
     }
     public function updatemakanan (Request $request, $id){
         $data = makanan::findorFail($id);
@@ -46,7 +47,8 @@ class makanan_controller extends Controller
         $data->nama = $request->input('nama');
         $data->kategori = $request->input('kategori');
         $data->harga = $request->input('harga');
+        $data->harga = $request->input('stok');
         $data->save();
-        return redirect()->route('viewmakanan');
+        return redirect()->route('adminmenu');
     }
 }

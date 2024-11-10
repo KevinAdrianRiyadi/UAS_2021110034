@@ -32,14 +32,14 @@ class dessert_controller extends Controller
         ]);
         $data['jenis'] = 'dessert';
         dessert::create($data);
-       return redirect()->route('viewdessert');
+       return redirect()->route('adminmenu');
     }
     public function deletedessert($id){
         
         $data = dessert::find($id);
         // dd($data);
         $data->delete();
-        return redirect()->route('viewdessert');
+        return redirect()->route('adminmenu');
     }
     public function updatedessert (Request $request, $id){
         $data = dessert::findorFail($id);

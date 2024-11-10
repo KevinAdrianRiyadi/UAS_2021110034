@@ -3,8 +3,10 @@
 use App\Http\Controllers\admincontroller;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\dessert_controller;
+use App\Http\Controllers\kitchen_controller;
 use App\Http\Controllers\makanan_controller;
 use App\Http\Controllers\minuman_controller;
+use App\Http\Controllers\pesanan_controller;
 use App\Http\Controllers\usercontroller;
 use Illuminate\Support\Facades\Route;
 
@@ -47,8 +49,24 @@ Route::get('/dessertview', [dessert_controller::class, 'viewdessert'])->name('vi
 Route::get('/tambahdessertview', [dessert_controller::class, 'viewtambahdessert'])->name('tambahdessertview');
 Route::get('/editdessert/{id}', [dessert_controller::class, 'editdessert'])->name('editdessert');
 Route::post('/tambahdessert', [dessert_controller::class, 'insertdessert'])->name('tambahdessert');
-Route::delete('/deletdessert/{id}', [dessert_controller::class, 'deletedessert'])->name('deletedessert');
+Route::delete('/deletedessert/{id}', [dessert_controller::class, 'deletedessert'])->name('deletedessert');
 Route::put('/updatedessert/{id}', [dessert_controller::class, 'updatedessert'])->name('updatedessert');
+
+Route::get('/pesananview', [pesanan_controller::class, 'viewpesanan'])->name('viewpesanan');
+Route::get('/tambahpesananview', [pesanan_controller::class, 'viewtambahpesanan'])->name('tambahpesananview');
+Route::get('/payview/{id}', [pesanan_controller::class, 'payview'])->name('payview');
+Route::put('/pay/{id}', [pesanan_controller::class, 'pay'])->name('pay');
+Route::get('/editpesanan/{id}', [pesanan_controller::class, 'editpesanan'])->name('editpesanan');
+Route::post('/tambahpesanan', [pesanan_controller::class, 'insertpesanan'])->name('tambahpesanan');
+Route::delete('/deletepesanan/{id}', [pesanan_controller::class, 'deletepesanan'])->name('deletepesanan');
+Route::put('/updatepesanan/{id}', [pesanan_controller::class, 'updatepesanan'])->name('updatepesanan');
+
+Route::get('/kitchenview', [kitchen_controller::class, 'viewkitchen'])->name('viewkitchen');
+Route::get('/tambahkitchenview', [kitchen_controller::class, 'viewtambahkitchen'])->name('tambahkitchenview');
+Route::get('/editkitchen/{id}', [kitchen_controller::class, 'editkitchen'])->name('editkitchen');
+Route::post('/tambahkitchen', [kitchen_controller::class, 'insertkitchen'])->name('tambahkitchen');
+Route::delete('/deletekitchen/{id}', [kitchen_controller::class, 'deletekitchen'])->name('deletekitchen');
+Route::put('/updatekitchen/{id}', [kitchen_controller::class, 'updatekitchen'])->name('updatekitchen');
 
 Route::get('/login', function () {
     return view('modal.loginPelanggan')->name('login');

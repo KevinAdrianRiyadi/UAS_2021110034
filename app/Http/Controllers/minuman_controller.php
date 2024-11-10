@@ -33,7 +33,7 @@ class minuman_controller extends Controller
         $data['jenis'] = 'minuman';
 
         minuman::create($data);
-       return redirect()->route('viewminuman');
+       return redirect()->route('adminmenu');
     }
     public function deleteminuman($id){
         

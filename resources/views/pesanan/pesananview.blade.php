@@ -37,6 +37,7 @@
                             {{-- <td>{{ $item->stok }}</td> --}}
                             <td>
                                 <div class="d-flex justify-content-between">
+                                    {{-- @dd($item->id) --}}
                                     {{-- <a href="{{ route('editpesanan', $item->id) }}" class="btn btn-primary me-2">Edit</a> --}}
                                     <a href="{{ route('payview', $item->id) }}" class="btn btn-primary me-2">Pay</a>
                                     <form action="{{ route('deletepesanan', $item->id) }}" method="POST"

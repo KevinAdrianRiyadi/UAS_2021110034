@@ -32,26 +32,27 @@ class pesanan_controller extends Controller
         return view('pesanan.tambahpesanan', compact('datamakanan', 'dataminuman', 'datadessert'));
     }
 
-    public function pay($id){
+    public function pay($id)
+    {
         $data = pesanan::find($id);
         $data->status_pembayaran = 'paid';
         $data->save();
         // dd($data);
         return redirect()->route('viewpesanan')->with('success', 'Pesanan Berhasil Dibayar');
-
     }
 
-    public function payview($id){
+    public function payview($id)
+    {
         // dd($id);
-        $dataid = $id; 
-        $data = pesanan::find($id)
-        ->with('makanan')
-        ->with('minuman')
-        ->with('dessert')
-        ->first();
+        $dataid = $id;
+        $data = pesanan::where('id', $id)
+            ->with('makanan')
+            ->with('minuman')
+            ->with('dessert')
+            ->first();
         $title = 'pay';
         // dd($data);
-        return view('pesanan.pay', compact('title','data','dataid'));
+        return view('pesanan.pay', compact('title', 'data', 'dataid'));
     }
     public function insertpesanan(Request $request)
     {
@@ -62,12 +63,78 @@ class pesanan_controller extends Controller
             'dessert_id' => $request->input('dessert_id'),
             'status_pesanan' => 'order',
             'status_pembayaran' => 'not paid',
-            'total_harga' => '10000',
-            'user_id' => '1',
+            // 'total_harga' => '10000',
+            'user_id' => auth()->user()->id,
         ];
+
+        $makananId = $request->input('makanan_id');
+        if ($makananId) {
+            $makanan = makanan::find($makananId);
+            if ($makanan) {
+                if ($makanan->stok > 0) {
+                    $makanan->stok -= 1;
+                    $makanan->save();
+                } else {
+                    return response()->json([
+                        'message' => 'Makanan is Out of stock'
+                    ], 400);
+                }
+            } else {
+                return response()->json([
+                    'message' => 'Makanan not found'
+                ], 404);
+            }
+        }
+
+        $minumanId = $request->input('minuman_id');
+        if ($minumanId) {
+            $minuman = minuman::find($minumanId);
+            if ($minuman) {
+                if ($minuman->stok > 0) {
+                    $minuman->stok -= 1;
+                    $minuman->save();
+                } else {
+                    return response()->json([
+                        'message' => 'Minuman is Out of stock'
+                    ], 400);
+                }
+            } else {
+                return response()->json([
+                    'message' => 'Minuman not found'
+                ], 404);
+            }
+        }
+
+
+        $dessertId = $request->input('dessert_id');
+        if ($dessertId) {
+            $dessert = dessert::find($dessertId);
+            if ($dessert) {
+                if ($dessert->stok > 0) {
+                    $dessert->stok -= 1;
+                    $dessert->save();
+                } else {
+                    return response()->json([
+                        'message' => 'Dessert is Out of stock'
+                    ], 400);
+                }
+            } else {
+                return response()->json([
+                    'message' => 'Dessert not found'
+                ], 404);
+            }
+        }
+
+        $hargamakanan = makanan::where('id', $request->input('makanan_id'))->value('harga');
+        $hargaminuman = minuman::where('id', $request->input('minuman_id'))->value('harga');
+        $hargadessert = dessert::where('id', $request->input('dessert_id'))->value('harga');
+        $total = $hargamakanan + $hargaminuman + $hargadessert;
+        // dd($total);
+        $data['total_harga'] = $total;
         pesanan::create($data);
         return redirect()->route('viewpesanan');
     }
+
     public function deletepesanan($id)
     {
 

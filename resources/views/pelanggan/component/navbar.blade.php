@@ -16,7 +16,7 @@
                     <a class="nav-link fs-5 active" aria-current="page" href="adminmenu">All Menu Admin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-5 active" aria-current="page" href="#">All Menu Kitchen (Stok & Verify Receipt)</a>
+                    <a class="nav-link fs-5 active" aria-current="page" href="{{route('viewkitchen')}}">All Menu Kitchen (Stok & Verify Receipt)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fs-5 active" aria-current="page" href="{{route('viewpesanan')}}">All Menu Pelanggan (Add pesanan,Total Pesanan, Bayar)</a>

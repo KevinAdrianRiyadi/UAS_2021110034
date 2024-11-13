@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\kitchen;
+use App\Models\pesanan;
 use Illuminate\Http\Request;
 
 class kitchen_controller extends Controller
 {
     public function viewkitchen()
     {
-        $datakitchen = kitchen::all();
-        return view('admin.kitchen.kitchenview', compact('datakitchen'));
+        $datapesanan = pesanan::where('status_pembayaran','paid')
+        ->with('makanan')
+        ->with('minuman')
+        ->with('dessert')
+        ->get();
+        $title = 'KitchenView';
+        return view('admin.kitchen.kitchenview', compact('datapesanan','title'));
     }
     public function editkitchen($id)
     {
-        $data = kitchen::find($id);
+        $data = pesanan::find($id);
         // dd($data);
         return view('admin.kitchen.editkitchen', compact('data'));
     }
@@ -32,23 +38,19 @@ class kitchen_controller extends Controller
         ]);
         $data['jenis'] = 'kitchen';
 
-        kitchen::create($data);
+        pesanan::create($data);
        return redirect()->route('viewkitchen');
     }
     public function deletekitchen($id){
         
-        $data = kitchen::find($id);
+        $data = pesanan::find($id);
         // dd($data);
         $data->delete();
         return redirect()->route('viewkitchen');
     }
     public function updatekitchen (Request $request, $id){
-        $data = kitchen::findorFail($id);
-        
-        $data->nama = $request->input('nama');
-        $data->kategori = $request->input('kategori');
-        $data->harga = $request->input('harga');
-        $data->stok = $request->input('stok');
+        $data = pesanan::find($id);
+        $data->status_pesanan = 'serve';
         $data->save();
         return redirect()->route('adminmenu');
     }

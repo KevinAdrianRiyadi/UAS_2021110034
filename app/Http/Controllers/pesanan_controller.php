@@ -13,7 +13,8 @@ class pesanan_controller extends Controller
 {
     public function viewpesanan()
     {
-        $datapesanan = pesanan::all();
+        $datapesanan = pesanan::with('makanan')->with('minuman')->with('dessert')->get();
+        // dd($datapesanan);
         $title = 'Pesanan';
         return view('pesanan.pesananview', compact('title', 'datapesanan'));
     }
@@ -26,9 +27,9 @@ class pesanan_controller extends Controller
 
     public function viewtambahpesanan()
     {
-        $datamakanan = makanan::all();
-        $dataminuman = minuman::all();
-        $datadessert = dessert::all();
+        $datamakanan = makanan::where('stok','>',1)->get();
+        $dataminuman = minuman::where('stok','>',1)->get();
+        $datadessert = dessert::where('stok','>',1)->get();
         return view('pesanan.tambahpesanan', compact('datamakanan', 'dataminuman', 'datadessert'));
     }
 

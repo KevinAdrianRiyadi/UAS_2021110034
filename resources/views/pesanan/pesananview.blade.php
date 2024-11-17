@@ -29,9 +29,22 @@
                         <tr>
                             {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->makanan_id }}</td>
-                            <td>{{ $item->minuman_id }}</td>
-                            <td>{{ $item->dessert_id }}</td>
+                            {{-- <td>{{ $item->makanan->first()['nama'] }}</td> --}}
+                            <td>
+                                @if (isset($item->makanan) && $item->makanan->first())
+                                    <p class="text-black"> {{ $item->makanan->first()->nama }}</p>
+                                @endif
+                            </td>
+                            <td>
+                                @if (isset($item->minuman) && $item->minuman->first())
+                                    <p class="text-black"> {{ $item->minuman->first()->nama }}</p>
+                                @endif
+                            </td>
+                                <td>
+                                    @if (isset($item->dessert) && $item->dessert->first())
+                                        <p class="text-black"> {{ $item->dessert->first()->nama }}</p>
+                                    @endif
+                                </td>
                             <td>{{ $item->total_harga }}</td>
                             <td>{{ $item->status_pembayaran }}</td>
                             {{-- <td>{{ $item->stok }}</td> --}}

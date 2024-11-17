@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dessert;
+use App\Models\makanan;
+use App\Models\minuman;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -12,9 +15,13 @@ class Controller extends BaseController
 
     public function index()
     {
-        return view('pelanggan.page.home', [
-            'title' => 'Home',
-        ]);
+        $makananindonesia = makanan::where('kategori','IndonesianFood')->get();
+        $makananwestern = makanan::where('kategori','WesternFood')->get();
+        $makanankorean = makanan::where('kategori','KoreanFood')->get();
+        $minuman = minuman::all();
+        $dessert = dessert::all();
+        $title = 'Home';
+        return view('pelanggan.page.home2', compact('makananindonesia','makananwestern','makanankorean','title','minuman','dessert'));
 
     }
     public function shop()

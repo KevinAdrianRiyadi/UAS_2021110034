@@ -1,4 +1,6 @@
-<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #025464">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: black">
     <div class="container">
             <a class="navbar-brand" href="{{route('Home')}}">
                 
@@ -13,13 +15,13 @@
             <ul class="navbar-nav gap-4">
                 @if(auth()->user())
                 <li class="nav-item">
-                    <a class="nav-link fs-5 active" aria-current="page" href="adminmenu">All Menu Admin</a>
+                    <a class="nav-link fs-5 active" aria-current="page" href="adminmenu">Admin Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-5 active" aria-current="page" href="{{route('viewkitchen')}}">All Menu Kitchen (Stok & Verify Receipt)</a>
+                    <a class="nav-link fs-5 active" aria-current="page" href="{{route('viewkitchen')}}">Kitchen Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-5 active" aria-current="page" href="{{route('viewpesanan')}}">All Menu Pelanggan (Add pesanan,Total Pesanan, Bayar)</a>
+                    <a class="nav-link fs-5 active" aria-current="page" href="{{route('viewpesanan')}}">Pelanggan Menu</a>
                 </li>
                 @else
                 <li class="nav-item">
@@ -44,7 +46,7 @@
                             Welcome! {{ auth()->user()->name }}
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Profile</a></li> --}}
                             <li>
                                 <form action="/logout" method="POST">
                                     @csrf
@@ -52,7 +54,7 @@
                                 </form>
                             </li>
                         </ul>
-                    </div>
+                    </div>                    
                 </div>
             @else
                 <div class="d-flex gap-4 align-items-center">

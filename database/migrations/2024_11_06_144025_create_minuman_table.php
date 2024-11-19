@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('jenis');
             $table->string('harga');
             $table->string('stok');
+            $table->string('photo');
         });
     }
 

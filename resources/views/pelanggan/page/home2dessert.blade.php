@@ -73,7 +73,7 @@
                         <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
                     </div>
                     <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                        
+                        {{-- <img class="img-fluid" src="" alt=""> --}}
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                           <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -105,13 +105,13 @@
 
         <div class="container my-5">
             <div class="menu-categories">
-                <a href="#" class="active">
+                <a href="{{route('Home')}}" class="active">
                     <span></span> Food
                 </a>
                 <a href="{{route('Homeminuman')}}">
                     <span></span> Beverage
                 </a>
-                <a href="{{route('Homedessert')}}">
+                <a href="#">
                     <span></span> Dessert
                 </a>
             </div>
@@ -119,22 +119,8 @@
             
             <div class="row">
                 <div class="col-md-6">
-                  <h2 class="text-black text-lg font-bold">Indonesian Food</h2>
-                    @foreach ($makananindonesia as $item)
-                        <div class="menu-item">
-                            {{-- <img src="https://via.placeholder.com/80" alt="Menu Item"> --}}
-                            <img src="{{'storage/'.($item->photo)}}" alt="{{$item->name}}'picture" class="w-25" srcset="">
-                            <div class="menu-details">
-                                <h5>{{ $item->nama }}</h5>
-                                <p>{{ $item->kategori }}</p>
-                            </div>
-                            <div class="price">Rp {{ $item->harga }}</div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="col-md-6">
-                  <h2 class="text-black text-lg font-bold">Western Food</h2>
-                    @foreach ($makananwestern as $item)
+                  <h2 class="text-black text-lg font-bold">Ice Cream</h2>
+                    @foreach ($icecream as $item)
                         <div class="menu-item">
                             <img src="https://via.placeholder.com/80" alt="Menu Item">
                             <div class="menu-details">
@@ -146,8 +132,21 @@
                     @endforeach
                 </div>
                 <div class="col-md-6">
-                  <h2 class="text-black text-lg font-bold">Korean Food</h2>
-                    @foreach ($makanankorean as $item)
+                  <h2 class="text-black text-lg font-bold">Cake</h2>
+                    @foreach ($cake as $item)
+                        <div class="menu-item">
+                            <img src="https://via.placeholder.com/80" alt="Menu Item">
+                            <div class="menu-details">
+                                <h5>{{ $item->nama }}</h5>
+                                <p>{{ $item->kategori }}</p>
+                            </div>
+                            <div class="price">Rp {{ $item->harga }}</div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="col-md-6">
+                  <h2 class="text-black text-lg font-bold">Waffle</h2>
+                    @foreach ($waffle as $item)
                         <div class="menu-item">
                             <img src="https://via.placeholder.com/80" alt="Menu Item">
                             <div class="menu-details">

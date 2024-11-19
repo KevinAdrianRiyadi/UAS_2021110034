@@ -28,7 +28,8 @@ class minuman_controller extends Controller
             'nama' => $request->nama,
             'kategori' => $request->kategori,
             'harga' => $request->harga,
-            'stok' => $request->stok
+            'stok' => $request->stok,
+            'photo' => $request->photo,
         ]);
         $data['jenis'] = 'minuman';
 

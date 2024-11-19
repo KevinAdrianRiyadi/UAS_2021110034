@@ -28,6 +28,7 @@
                         <th>Jenis</th>
                         <th>Harga</th>
                         <th>Stok</th>
+                        <th>Photo</th>
                     </tr>
                 </thead>
                 <tbody id="itemTable">
@@ -40,6 +41,8 @@
                             <td>{{ $item->jenis }}</td>
                             <td>{{ $item->harga }}</td>
                             <td>{{ $item->stok }}</td>
+                            <td><img src="{{'storage/'.($item->photo)}}" alt="" class="w-25" srcset="">
+                            {{-- <p class="text-black"></p></td> --}}
                             <td>
                                 <div class="d-flex justify-content-between">
                                     {{-- @dd($item->jenis) --}}

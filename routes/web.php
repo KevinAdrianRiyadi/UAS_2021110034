@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [Controller::class, 'index'])-> name('Home');
+Route::get('/homeminuman', [Controller::class, 'minuman'])-> name('Homeminuman');
+Route::get('/homedessert', [Controller::class, 'dessert'])-> name('Homedessert');
 Route::get('/shop', [Controller::class, 'shop'])-> name('Shop');
 Route::get('/transaksi', [Controller::class, 'transaksi'])-> name('Transaksi');
 Route::get('/contact', [Controller::class, 'contact'])-> name('Contact');

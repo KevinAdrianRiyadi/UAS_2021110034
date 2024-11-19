@@ -46,8 +46,8 @@
                 <input type="number" class="form-control" id="stok" name="stok" required>
             </div>
             <div class="mb-3">
-                <label for="inputfile" class="form-label">Photo</label>
-                <input class="form-control" type="file" id="inputfile">
+                <label for="photo" class="form-label">Photo</label>
+                <input class="form-control" type="file" id="photo" name="photo">
             </div>
             <button type="submit" class="btn btn-primary">Create Item</button>
             {{-- <a href="{{ route('items.index') }}" class="btn btn-secondary">Back</a> --}}

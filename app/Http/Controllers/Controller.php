@@ -24,6 +24,24 @@ class Controller extends BaseController
         return view('pelanggan.page.home2', compact('makananindonesia','makananwestern','makanankorean','title','minuman','dessert'));
 
     }
+    public function minuman()
+    {
+        $cocktail = minuman::where('kategori','Cocktail')->get();
+        $mocktail = minuman::where('kategori','Mocktail')->get();
+        $beer = minuman::where('kategori','Beer')->get();
+        $title = 'Home';
+        return view('pelanggan.page.home2minuman', compact('cocktail','mocktail','beer','title'));
+
+    }
+    public function dessert()
+    {
+        $icecream = dessert::where('kategori','IceCream')->get();
+        $cake = dessert::where('kategori','Cake')->get();
+        $waffle = dessert::where('kategori','Waffle')->get();
+        $title = 'Home';
+        return view('pelanggan.page.home2dessert', compact('icecream','cake','waffle','title'));
+
+    }
     public function shop()
     {
         return view('pelanggan.page.shop', [

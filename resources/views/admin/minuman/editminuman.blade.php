@@ -10,7 +10,7 @@
 
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">Create New Item</h2>
+        <h2 class="mb-4">Editminuman</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -50,7 +50,7 @@
             </div>
             <div class="mb-3">
                 <label for="inputfile" class="form-label">Photo</label>
-                <input class="form-control" type="file" id="inputfile">
+                <input class="form-control" type="file" id="inputfile" name="photo">
             </div>
             <button type="submit" class="btn btn-primary">Update Item</button>
             {{-- <a href="{{ route('items.index') }}" class="btn btn-secondary">Back</a> --}}

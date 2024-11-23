@@ -2,9 +2,9 @@
   <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header justify-content-between">
                   <h5 class="modal-title fs-5" id="registerModalLabel">Register</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class="close p-2" data-bs-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
@@ -32,6 +32,15 @@
                                   placeholder="Masukkan password Anda">
                           </div>
                       </div>
+                      <div class="mb-3">
+                        <label for="name" class="form-label">Role</label>
+                        <select class="primary_type mx-3" aria-label="Default select example" name="role">
+                            <option selected value="">--SelectRole--</option>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                            
+                        </select>
+                    </div>
                       <button type="submit" class="btn btn-success col-sm-12">Register</button>
               </form>
               <p class="m-auto text-center p-2" style="font-size:12px">Jika belum ada akun register sekarang!</p>

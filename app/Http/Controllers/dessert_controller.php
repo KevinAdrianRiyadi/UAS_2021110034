@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\dessert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class dessert_controller extends Controller
 {
@@ -29,8 +30,18 @@ class dessert_controller extends Controller
             'kategori' => $request->kategori,
             'harga' => $request->harga,
             'stok' => $request->stok,
-            'photo' => $request->photo,
+            // 'photo' => $request->photo,
         ]);
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            // $path = $file->storeAs('public/makanan', $filename);
+            $path = Storage::disk('public')->put('dessert',$file);
+            $data['photo'] = $path;
+        }
+        else{
+            $data['photo'] = 0;
+        }
         $data['jenis'] = 'dessert';
         dessert::create($data);
        return redirect()->route('adminmenu');
@@ -49,6 +60,21 @@ class dessert_controller extends Controller
         $data->kategori = $request->input('kategori');
         $data->harga = $request->input('harga');
         $data->stok = $request->input('stok');
+        if ($request->hasFile('photo')) {
+            if ($data->photo) {
+                Storage::disk('public')->delete($data->photo);
+                $file = $request->file('photo');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                // $path = $file->storeAs('public/makanan', $filename);
+                $path = Storage::disk('public')->put('dessert', $file);
+                $data['photo'] = $path;
+            } else {
+                $file = $request->file('photo');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $path = Storage::disk('public')->put('dessert', $file);
+                $data['photo'] = $path;
+            }
+        }
         $data->save();
         return redirect()->route('adminmenu');
     }

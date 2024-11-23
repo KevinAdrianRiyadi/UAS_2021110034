@@ -17,6 +17,7 @@ class usercontroller extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
+            'role' => 'required',
 
         ]);
         $data['password'] = Hash::make($data['password']);

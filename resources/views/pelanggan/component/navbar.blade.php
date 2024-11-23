@@ -2,10 +2,10 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: black">
     <div class="container">
-            <a class="navbar-brand" href="{{route('Home')}}">
-                
-                  
-                Luxury Hotel</a>
+        <a class="navbar-brand" href="{{ route('Home') }}">
+
+
+            Luxury Hotel</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,26 +13,31 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end gap-4" id="navbarNav">
             <ul class="navbar-nav gap-4">
-                @if(auth()->user())
-                <li class="nav-item">
-                    <a class="nav-link fs-5 active" aria-current="page" href="adminmenu">Admin Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 active" aria-current="page" href="{{route('viewkitchen')}}">Kitchen Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 active" aria-current="page" href="{{route('viewpesanan')}}">Pelanggan Menu</a>
-                </li>
+                @if (auth()->user())
+                    @if (auth()->user()->role == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 active" aria-current="page" href="adminmenu">Admin Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 active" aria-current="page"
+                                href="{{ route('viewkitchen') }}">Kitchen Menu</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 active" aria-current="page"
+                                href="{{ route('viewpesanan') }}">Pelanggan Menu</a>
+                        </li>
+                    @endif
                 @else
-                <li class="nav-item">
-                    <a class="nav-link fs-5 active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 " href="#">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 " href="#">Contact Us</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 active" aria-current="page" href="#">Home</a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link fs-5 " href="#">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 " href="#">Contact Us</a>
+                    </li> --}}
                 @endif
             </ul>
             @if (auth()->user())
@@ -54,7 +59,7 @@
                                 </form>
                             </li>
                         </ul>
-                    </div>                    
+                    </div>
                 </div>
             @else
                 <div class="d-flex gap-4 align-items-center">

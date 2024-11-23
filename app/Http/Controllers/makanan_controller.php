@@ -40,7 +40,7 @@ class makanan_controller extends Controller
             $file = $request->file('photo');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             // $path = $file->storeAs('public/makanan', $filename);
-            $path = Storage::disk('public')->put('makanan',$file);
+            $path = Storage::disk('public')->put('makanan', $file);
             $data['photo'] = $path;
         }
         // dd($data);
@@ -62,7 +62,24 @@ class makanan_controller extends Controller
         $data->nama = $request->input('nama');
         $data->kategori = $request->input('kategori');
         $data->harga = $request->input('harga');
-        $data->harga = $request->input('stok');
+        $data->stok = $request->input('stok');
+
+        if ($request->hasFile('photo')) {
+            if ($data->photo) {
+                Storage::disk('public')->delete($data->photo);
+                $file = $request->file('photo');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                // $path = $file->storeAs('public/makanan', $filename);
+                $path = Storage::disk('public')->put('makanan', $file);
+                $data['photo'] = $path;
+            } else {
+                $file = $request->file('photo');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $path = Storage::disk('public')->put('makanan', $file);
+                $data['photo'] = $path;
+            }
+        }
+
         $data->save();
         return redirect()->route('adminmenu');
     }

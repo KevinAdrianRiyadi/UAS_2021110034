@@ -16,7 +16,7 @@
             @include('pelanggan.component.navbar')
         </header>
         <section>
-            <div class="container">
+            <div class="">
                 @yield('content')
             </div>
         </section>

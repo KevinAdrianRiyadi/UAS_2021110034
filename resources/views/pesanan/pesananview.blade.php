@@ -22,6 +22,7 @@
                         <th>Dessert</th>
                         <th>Total Harga</th>
                         <th>Status Pembayaran</th>
+                        <th>Status Pesanan</th>
                     </tr>
                 </thead>
                 <tbody id="itemTable">
@@ -47,6 +48,7 @@
                                 </td>
                             <td>{{ $item->total_harga }}</td>
                             <td>{{ $item->status_pembayaran }}</td>
+                            <td>{{ $item->status_pesanan }}</td>
                             {{-- <td>{{ $item->stok }}</td> --}}
                             <td>
                                 <div class="d-flex justify-content-between">

@@ -69,8 +69,9 @@
                 <div class="row align-items-center g-5">
                     <div class="col-lg-6 text-center text-lg-start">
                         <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
-                        <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
+                        <p class="text-white animated slideInLeft mb-4 pb-2">Our signature dishes are prepared with fresh ingredients and the best recipes to pamper your taste buds. Experience an unforgettable taste!
+                        </p>
+                        <a href="{{route('viewpesanan')}}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Order</a>
                     </div>
                     <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                         
@@ -80,10 +81,10 @@
                               <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                              <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="d-block w-100" alt="...">
+                              <img src="https://images.pexels.com/photos/1352270/pexels-photo-1352270.jpeg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                              <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="d-block w-100" alt="...">
+                              <img src="https://images.pexels.com/photos/8570300/pexels-photo-8570300.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="d-block w-100" alt="...">
                             </div>
                           </div>
                           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -121,6 +122,7 @@
                 <div class="col-md-6">
                   <h2 class="text-black text-lg font-bold">Indonesian Food</h2>
                     @foreach ($makananindonesia as $item)
+                    <a href="{{route('viewpesanan')}}">
                         <div class="menu-item">
                             {{-- <img src="https://via.placeholder.com/80" alt="Menu Item"> --}}
                             <img src="{{'storage/'.($item->photo)}}" alt="{{$item->name}}'picture" class="w-25" srcset="">
@@ -130,11 +132,13 @@
                             </div>
                             <div class="price">Rp {{ $item->harga }}</div>
                         </div>
+                    </a>
                     @endforeach
                 </div>
                 <div class="col-md-6">
                   <h2 class="text-black text-lg font-bold">Western Food</h2>
                     @foreach ($makananwestern as $item)
+                    <a href="{{route('viewpesanan')}}">
                         <div class="menu-item">
                             <img src="https://via.placeholder.com/80" alt="Menu Item">
                             <div class="menu-details">
@@ -143,11 +147,13 @@
                             </div>
                             <div class="price">Rp {{ $item->harga }}</div>
                         </div>
+                    </a>
                     @endforeach
                 </div>
                 <div class="col-md-6">
                   <h2 class="text-black text-lg font-bold">Korean Food</h2>
                     @foreach ($makanankorean as $item)
+                    <a href="{{route('viewpesanan')}}">
                         <div class="menu-item">
                             <img src="https://via.placeholder.com/80" alt="Menu Item">
                             <div class="menu-details">
@@ -156,6 +162,7 @@
                             </div>
                             <div class="price">Rp {{ $item->harga }}</div>
                         </div>
+                    </a>
                     @endforeach
                 </div>
         </div>

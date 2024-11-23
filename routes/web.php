@@ -54,7 +54,7 @@ Route::post('/tambahdessert', [dessert_controller::class, 'insertdessert'])->nam
 Route::delete('/deletedessert/{id}', [dessert_controller::class, 'deletedessert'])->name('deletedessert');
 Route::put('/updatedessert/{id}', [dessert_controller::class, 'updatedessert'])->name('updatedessert');
 
-Route::get('/pesananview', [pesanan_controller::class, 'viewpesanan'])->name('viewpesanan');
+Route::get('/pesananview', [pesanan_controller::class, 'viewpesanan'])->name('viewpesanan')->middleware('auth:web');
 Route::get('/tambahpesananview', [pesanan_controller::class, 'viewtambahpesanan'])->name('tambahpesananview');
 Route::get('/payview/{id}', [pesanan_controller::class, 'payview'])->name('payview');
 Route::put('/pay/{id}', [pesanan_controller::class, 'pay'])->name('pay');

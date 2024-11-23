@@ -3,34 +3,31 @@
         <div class="col">
             <div class="title-left w-70">
                 <div class="header-title fs-5 mb-2 font-weight-bolder">
-                    HOTEL X
+                    LUXURY HOTEL 
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, tempora totam omnis quo, eligendi
-                    repellendus fugit deserunt illum temporibus non perferendis nulla quos, hic quod magnam nihil
-                    blanditiis quis voluptates?</p>
+                <p>Room Reservation :<br>
+                    +6222 8780 6688<br>
+                    +62811 214 2388<br>
+
+                </br>
+                    Restaurant Reservation :<br>
+                    +6222 8780 6688<br>
+
 
             </div>
         </div>
         <div class="col">
             <div class="title-middle w-20 ">
                 <div class="header-title fs-4 mb-2 font-weight-bolder">
-                    Tentang Kami
+                    About Us
                 </div>
                 <ul class="list-unstyled">
                     <li>
                         <address>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla amet necessitatibus optio
-                            itaque nam
-                            pariatur magni dignissimos odit autem dicta, delectus quas inventore vel facilis expedita
-                            corrupti
-                            voluptatum, obcaecati deleniti.</address>
+                            Welcome to Luxury Hotel, a place where comfort and excellent service meet to create an unforgettable stay. Located in a strategic location that makes it easy to access various popular destinations, our hotel offers comfortable accommodation and complete facilities to meet the needs of guests, whether on holiday or on a business trip.
+</address>
                     </li>
-                    <li>
-                        <p>4354354354</p>
-                    </li>
-                    <li>
-                        4534535345
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -40,9 +37,12 @@
                     Sosial Media
                 </div>
                 <div class="sosmed justify-content-center d-flex gap-3">
-                    <i class="fa-brands fa-instagram fa-2x"></i>
-                    <i class="fa-brands fa-square-facebook fa-2x"></i>
-                    <i class="fa-brands fa-whatsapp fa-2x"></i>
+                    <a href="https://www.instagram.com/">
+                    <i class="fa-brands fa-instagram fa-2x"></i></a>
+                    <a href="https://www.facebook.com/">
+                    <i class="fa-brands fa-square-facebook fa-2x"></i></a>
+                    <a href="https://www.whatsapp.com/">
+                    <i class="fa-brands fa-whatsapp fa-2x"></i></a>
                 </div>
             </div>
         </div>
@@ -53,6 +53,6 @@
 
 </div>
 <div class="text-center p-lg-4 mt-3">
-    Copyright @ Hotel 2024 </i>
+    Copyright @ Luxury Hotel 2024 </i>
 </div>
 </div>

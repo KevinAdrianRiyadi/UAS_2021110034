@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between gap-5 pt-4">
     <div class="row text-center">
         <div class="col">
-            <div class="title-left w-70">
+            <div class="title-left w-70 mt-2">
                 <div class="header-title fs-5 mb-2 font-weight-bolder">
                     LUXURY HOTEL 
                 </div>

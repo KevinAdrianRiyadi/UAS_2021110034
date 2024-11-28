@@ -105,10 +105,10 @@
 
         <div class="container my-5">
             <div class="menu-categories">
-                <a href="{{route('Home')}}" class="active">
+                <a href="{{route('Home')}}">
                     <span></span> Food
                 </a>
-                <a href="#">
+                <a href="#" class="active">
                     <span></span> Beverage
                 </a>
                 <a href="{{route('Homedessert')}}">
@@ -121,40 +121,46 @@
                 <div class="col-md-6">
                   <h2 class="text-black text-lg font-bold">Cocktail</h2>
                     @foreach ($cocktail as $item)
+                    <a href="{{route('viewpesanan')}}" class="text-decoration-none">
                         <div class="menu-item">
-                            <img src="https://via.placeholder.com/80" alt="Menu Item">
+                            <img src="{{'storage/'.($item->photo)}}" alt="{{$item->name}}'picture" class="w-25" srcset="">
                             <div class="menu-details">
                                 <h5>{{ $item->nama }}</h5>
                                 <p>{{ $item->kategori }}</p>
                             </div>
                             <div class="price">Rp {{ $item->harga }}</div>
                         </div>
+                    </a>
                     @endforeach
                 </div>
                 <div class="col-md-6">
                   <h2 class="text-black text-lg font-bold">Mocktail</h2>
                     @foreach ($mocktail as $item)
+                    <a href="{{route('viewpesanan')}}" class="text-decoration-none">
                         <div class="menu-item">
-                            <img src="https://via.placeholder.com/80" alt="Menu Item">
+                            <img src="{{'storage/'.($item->photo)}}" alt="{{$item->name}}'picture" class="w-25" srcset="">
                             <div class="menu-details">
                                 <h5>{{ $item->nama }}</h5>
                                 <p>{{ $item->kategori }}</p>
                             </div>
                             <div class="price">Rp {{ $item->harga }}</div>
                         </div>
+                    </a>
                     @endforeach
                 </div>
                 <div class="col-md-6">
                   <h2 class="text-black text-lg font-bold">Beer</h2>
                     @foreach ($beer as $item)
+                    <a href="{{route('viewpesanan')}}" class="text-decoration-none">
                         <div class="menu-item">
-                            <img src="https://via.placeholder.com/80" alt="Menu Item">
+                            <img src="{{'storage/'.($item->photo)}}" alt="{{$item->name}}'picture" class="w-25" srcset="">
                             <div class="menu-details">
                                 <h5>{{ $item->nama }}</h5>
                                 <p>{{ $item->kategori }}</p>
                             </div>
                             <div class="price">Rp {{ $item->harga }}</div>
                         </div>
+                    </a>
                     @endforeach
                 </div>
         </div>

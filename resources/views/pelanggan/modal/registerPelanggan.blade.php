@@ -15,7 +15,7 @@
                           <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                           <div class="col-sm-9">
                               <input type="text" name="name" class="form-control" id="nama" value=""
-                                  placeholder="Masukkan email Anda">
+                                  placeholder="Masukkan nama Anda">
                           </div>
                       </div>
                       <div class="mb-3 row">

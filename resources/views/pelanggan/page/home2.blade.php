@@ -122,7 +122,7 @@
                 <div class="col-md-6">
                   <h2 class="text-black text-lg font-bold">Indonesian Food</h2>
                     @foreach ($makananindonesia as $item)
-                    <a href="{{route('viewpesanan')}}">
+                    <a href="{{route('viewpesanan')}}" class="text-decoration-none">
                         <div class="menu-item">
                             {{-- <img src="https://via.placeholder.com/80" alt="Menu Item"> --}}
                             <img src="{{'storage/'.($item->photo)}}" alt="{{$item->name}}'picture" class="w-25" srcset="">
@@ -138,9 +138,9 @@
                 <div class="col-md-6">
                   <h2 class="text-black text-lg font-bold">Western Food</h2>
                     @foreach ($makananwestern as $item)
-                    <a href="{{route('viewpesanan')}}">
+                    <a href="{{route('viewpesanan')}}" class="text-decoration-none">
                         <div class="menu-item">
-                            <img src="https://via.placeholder.com/80" alt="Menu Item">
+                            <img src="{{'storage/'.($item->photo)}}" alt="{{$item->name}}'picture" class="w-25" srcset="">
                             <div class="menu-details">
                                 <h5>{{ $item->nama }}</h5>
                                 <p>{{ $item->kategori }}</p>
@@ -153,9 +153,9 @@
                 <div class="col-md-6">
                   <h2 class="text-black text-lg font-bold">Korean Food</h2>
                     @foreach ($makanankorean as $item)
-                    <a href="{{route('viewpesanan')}}">
+                    <a href="{{route('viewpesanan')}}" class="text-decoration-none">
                         <div class="menu-item">
-                            <img src="https://via.placeholder.com/80" alt="Menu Item">
+                            <img src="{{'storage/'.($item->photo)}}" alt="{{$item->name}}'picture" class="w-25" srcset="">
                             <div class="menu-details">
                                 <h5>{{ $item->nama }}</h5>
                                 <p>{{ $item->kategori }}</p>

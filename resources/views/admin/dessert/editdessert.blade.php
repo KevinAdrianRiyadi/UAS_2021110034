@@ -10,7 +10,7 @@
 
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">Create New Item</h2>
+        <h2 class="mb-4">Edit Dessert</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">

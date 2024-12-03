@@ -16,7 +16,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        {{-- <th>ID</th> --}}
                         <th>Makanan</th>
                         <th>Minuman</th>
                         <th>Dessert</th>
@@ -29,7 +29,7 @@
                     @foreach ($datapesanan as $item)
                         <tr>
                             {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
-                            <td>{{ $item->id }}</td>
+                            {{-- <td>{{ $item->id }}</td> --}}
                             {{-- <td>{{ $item->makanan->first()['nama'] }}</td> --}}
                             <td>
                                 @if (isset($item->makanan) && $item->makanan->first())

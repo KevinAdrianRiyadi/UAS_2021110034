@@ -13,7 +13,7 @@ class pesanan_controller extends Controller
 {
     public function viewpesanan()
     {
-        $datapesanan = pesanan::with('makanan')->with('minuman')->with('dessert')->get();
+        $datapesanan = pesanan::with('makanan')->with('minuman')->with('dessert')->where('user_id',auth()->user()->id)->get();
         // dd($datapesanan);
         $title = 'Pesanan';
         return view('pesanan.pesananview', compact('title', 'datapesanan'));

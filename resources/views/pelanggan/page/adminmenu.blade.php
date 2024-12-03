@@ -3,7 +3,7 @@
 
     <body>
         <div class="container mt-5">
-            <h2 class="mb-4">Index View</h2>
+            <h2 class="mb-4">Menu</h2>
 
             {{-- <form action="{{ route('logout') }}" method="POST">
         @csrf

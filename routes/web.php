@@ -4,9 +4,12 @@ use App\Http\Controllers\admincontroller;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\dessert_controller;
 use App\Http\Controllers\kitchen_controller;
+use App\Http\Controllers\laporan_controller;
+use App\Http\Controllers\laporancontroller;
 use App\Http\Controllers\makanan_controller;
 use App\Http\Controllers\minuman_controller;
 use App\Http\Controllers\pesanan_controller;
+use App\Http\Controllers\supplier_controller;
 use App\Http\Controllers\usercontroller;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +37,7 @@ Route::post('/logout', [usercontroller::class, 'logout'])-> name('logout');
 
 
 Route::get('/makananview', [makanan_controller::class, 'viewmakanan'])->name('viewmakanan');
+
 Route::get('/tambahmakananview', [makanan_controller::class, 'viewtambahmakanan'])->name('tambahmakananview');
 Route::get('/editmakanan/{id}', [makanan_controller::class, 'editmakanan'])->name('editmakanan');
 Route::post('/tambahmakanan', [makanan_controller::class, 'insertmakanan'])->name('tambahmakanan');
@@ -55,6 +59,7 @@ Route::delete('/deletedessert/{id}', [dessert_controller::class, 'deletedessert'
 Route::put('/updatedessert/{id}', [dessert_controller::class, 'updatedessert'])->name('updatedessert');
 
 Route::get('/pesananview', [pesanan_controller::class, 'viewpesanan'])->name('viewpesanan')->middleware('auth:web');
+Route::get('/pesananviewadmin', [pesanan_controller::class, 'viewpesananadmin'])->name('viewpesananadmin')->middleware('auth:web');
 Route::get('/tambahpesananview', [pesanan_controller::class, 'viewtambahpesanan'])->name('tambahpesananview');
 Route::get('/payview/{id}', [pesanan_controller::class, 'payview'])->name('payview');
 Route::put('/pay/{id}', [pesanan_controller::class, 'pay'])->name('pay');
@@ -69,6 +74,17 @@ Route::get('/editkitchen/{id}', [kitchen_controller::class, 'editkitchen'])->nam
 Route::post('/tambahkitchen', [kitchen_controller::class, 'insertkitchen'])->name('tambahkitchen');
 Route::delete('/deletekitchen/{id}', [kitchen_controller::class, 'deletekitchen'])->name('deletekitchen');
 Route::put('/updatekitchen/{id}', [kitchen_controller::class, 'updatekitchen'])->name('updatekitchen');
+
+Route::get('/listitemreorder', [kitchen_controller::class, 'listitemreorder'])->name('listitemreorder');
+Route::get('/viewsupplier', [supplier_controller::class, 'viewordersupplier'])->name('viewsupplier');
+Route::get('/viewlaporan', [laporan_controller::class, 'index'])->name('viewlaporan');
+Route::get('/viewaddsupplier', [supplier_controller::class, 'index'])->name('viewaddsupplier');
+Route::get('/viewordersupplier', [supplier_controller::class, 'viewordersupplier'])->name('viewordersupplier');
+Route::post('/ordertosupplier', [supplier_controller::class, 'ordertosupplier'])->name('ordertosupplier');
+Route::put('/updateordersupplier/{id}', [supplier_controller::class, 'updateordersupplier'])->name('updateordersupplier');
+
+Route::get('/viewlaporanpembelian', [laporan_controller::class, 'viewlaporanpembelian'])->name('viewlaporanpembelian');
+Route::get('/viewlaporanpenjualan', [laporan_controller::class, 'viewlaporanpenjualan'])->name('viewlaporanpembelian');
 
 Route::get('/login', function () {
     return view('modal.loginPelanggan')->name('login');

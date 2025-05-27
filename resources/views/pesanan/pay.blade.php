@@ -20,6 +20,14 @@
                     @endif
                     {{-- @dd($data) --}}
                     <p class="text-black">TotalHarga: {{ $data->total_harga }}</p>
+                    <div class="m-4">
+                        <select name="paymethod" id="paymethod">
+                            <option value="null">Select pay method</option>
+                            <option value="VA">Virtual Account</option>
+                            <option value="EDC">EDC</option>
+                            <option value="RoomCharge">Room Charge</option>
+                        </select>
+                    </div>
                     {{-- <p class="text-black">TotalHarga: {{$data->makanan->first()->nama}}</p> --}}
                     <button type="submit" class="btn btn-primary mb-2">Pay</button>
                 </div>

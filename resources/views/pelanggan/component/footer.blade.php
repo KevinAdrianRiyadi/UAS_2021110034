@@ -3,7 +3,7 @@
         <div class="col">
             <div class="title-left w-70 mt-2">
                 <div class="header-title fs-5 mb-2 font-weight-bolder">
-                    LUXURY HOTEL 
+                    Hotel X 
                 </div>
                 <p>Room Reservation :<br>
                     +6222 8780 6688<br>
@@ -24,7 +24,7 @@
                 <ul class="list-unstyled">
                     <li>
                         <address>
-                            Welcome to Luxury Hotel, a place where comfort and excellent service meet to create an unforgettable stay. Located in a strategic location that makes it easy to access various popular destinations, our hotel offers comfortable accommodation and complete facilities to meet the needs of guests, whether on holiday or on a business trip.
+                            Welcome to Hotel X, a place where comfort and excellent service meet to create an unforgettable stay. Located in a strategic location that makes it easy to access various popular destinations, our hotel offers comfortable accommodation and complete facilities to meet the needs of guests, whether on holiday or on a business trip.
 </address>
                     </li>
                     
@@ -53,6 +53,6 @@
 
 </div>
 <div class="text-center p-lg-4 mt-3">
-    Copyright @ Luxury Hotel 2024 </i>
+    Copyright @Hotel X 2024 </i>
 </div>
 </div>

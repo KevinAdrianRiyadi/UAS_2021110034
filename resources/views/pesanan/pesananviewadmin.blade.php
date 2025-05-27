@@ -3,35 +3,39 @@
 
     <body>
         <div class="container mt-5">
-            <h2 class="mb-4">Keranjang Pesanan</h2>
+            <h2 class="mb-4">List Pesanan</h2>
 
             {{-- <form action="{{ route('logout') }}" method="POST">
         @csrf
         <button class="btn btn-primary mb-2">Logout</button>
     </form> --}}
-
+{{-- 
             <a href="/tambahpesananview">
                 <button class="btn btn-primary mb-3">Add Item</button>
-            </a>
+            </a> --}}
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        {{-- <th>ID</th> --}}
+                        <th>ID</th>
+                        <th>Nama</th>
+                        <th>No Kamar</th>
                         <th>Makanan</th>
                         <th>Minuman</th>
                         <th>Dessert</th>
                         <th>Total Harga</th>
-                        <th>No Kamar</th>
                         <th>Notes</th>
                         <th>Status Pembayaran</th>
                         <th>Status Pesanan</th>
+                        <th>Pay</th>
                     </tr>
                 </thead>
                 <tbody id="itemTable">
                     @foreach ($datapesanan as $item)
-                        <tr>
-                            {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
-                            {{-- <td>{{ $item->id }}</td> --}}
+                    <tr>
+                        {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->user->first()->name }}</td>
+                        <td>{{ $item->no_kamar }}</td>
                             {{-- <td>{{ $item->makanan->first()['nama'] }}</td> --}}
                             <td>
                                 @if (isset($item->makanan) && $item->makanan->first())
@@ -49,7 +53,6 @@
                                     @endif
                                 </td>
                             <td>{{ $item->total_harga }}</td>
-                            <td>{{ $item->no_kamar }}</td>
                             <td>{{ $item->notes }}</td>
                             <td>{{ $item->status_pembayaran }}</td>
                             <td>{{ $item->status_pesanan }}</td>
@@ -58,13 +61,15 @@
                                 <div class="d-flex justify-content-between">
                                     {{-- @dd($item->id) --}}
                                     {{-- <a href="{{ route('editpesanan', $item->id) }}" class="btn btn-primary me-2">Edit</a> --}}
-                                    {{-- <a href="{{ route('payview', $item->id) }}" class="btn btn-primary me-2">Pay</a> --}}
-                                    <form action="{{ route('deletepesanan', $item->id) }}" method="POST"
+                                    @if($item->status_pembayaran == 'not paid')
+                                    <a href="{{ route('payview', $item->id) }}" class="btn btn-primary me-2">Pay</a>
+                                    @endif
+                                    {{-- <form action="{{ route('deletepesanan', $item->id) }}" method="POST"
                                         onsubmit="return confirm('Are you sure you want to delete this item?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </td>
                             {{-- <td>

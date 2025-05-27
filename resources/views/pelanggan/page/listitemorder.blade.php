@@ -10,11 +10,8 @@
         <button class="btn btn-primary mb-2">Logout</button>
     </form> --}}
 
-            <a href="/pesananviewadmin">
-                <button class="btn btn-primary mb-3">List Pesanan</button>
-            </a>
-            <a href="/tambahmakananview">
-                <button class="btn btn-primary mb-3">Add Item Makanan</button>
+            {{-- <a href="/viewordersupplier">
+                <button class="btn btn-primary mb-3">View Restock</button>
             </a>
             <a href="/tambahminumanview">
                 <button class="btn btn-primary mb-3">Add Item Minuman</button>
@@ -24,7 +21,7 @@
             </a>
             <a href="/listitemreorder">
                 <button class="btn btn-primary mb-3">List Item to Reorder</button>
-            </a>
+            </a> --}}
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -54,37 +51,15 @@
                                     {{-- @dd($item->jenis) --}}
                                     @if ($item->jenis === 'makanan')
                                         <a href="{{ url('editmakanan/' . $item->id) }}"
-                                            class="btn btn-primary me-2">Edit</a>
+                                            class="btn btn-primary me-2">Reorder</a>
                                     @elseif($item->jenis === 'minuman')
                                         <a href="{{ url('editminuman/' . $item->id) }}"
-                                            class="btn btn-primary me-2">Edit</a>
+                                            class="btn btn-primary me-2">Reorder</a>
                                     @elseif($item->jenis === 'dessert')
                                         <a href="{{ url('editdessert/' . $item->id) }}"
-                                            class="btn btn-primary me-2">Edit</a>
+                                            class="btn btn-primary me-2">Reorder</a>
                                     @endif
 
-                                    @if ($item->jenis === 'makanan')
-                                        <form action="{{ url('deletemakanan/' . $item->id) }}" method="POST"
-                                            onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
-                                    @elseif($item->jenis === 'minuman')
-                                    <form action="{{ url('deleteminuman/' . $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                    @elseif($item->jenis === 'dessert')
-                                    <form action="{{ url('deletedessert/' . $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                    @endif
 
                                 </div>
                             </td>

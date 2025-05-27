@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dessert;
 use App\Models\kitchen;
+use App\Models\makanan;
+use App\Models\minuman;
 use App\Models\pesanan;
 use Illuminate\Http\Request;
 
@@ -10,7 +13,7 @@ class kitchen_controller extends Controller
 {
     public function viewkitchen()
     {
-        $datapesanan = pesanan::where('status_pembayaran','paid')
+        $datapesanan = pesanan::whereNot('status_pembayaran','not paid')
         ->with('makanan')
         ->with('minuman')
         ->with('dessert')
@@ -18,6 +21,22 @@ class kitchen_controller extends Controller
         $title = 'KitchenView';
         return view('admin.kitchen.kitchenview', compact('datapesanan','title'));
     }
+
+    public function listitemreorder(){
+        $datamakanan = makanan::all();
+        $dataminuman = minuman::all();
+        $datadessert = dessert::all();
+
+        $title = 'listitemorder';
+
+        $data2 = collect([$datamakanan, $dataminuman, $datadessert])->flatten();
+        $data = $data2->where('stok', '<=', 25);
+        // dd($datafinal);
+
+
+        return view('pelanggan.page.listitemorder', compact('title', 'data', 'datamakanan', 'dataminuman', 'datadessert'));
+    }
+
     public function editkitchen($id)
     {
         $data = pesanan::find($id);
@@ -52,7 +71,7 @@ class kitchen_controller extends Controller
         $data = pesanan::find($id);
         $data->status_pesanan = 'serve';
         $data->save();
-        return redirect()->route('adminmenu');
+        return redirect()->route('viewkitchen');
     }
 
 }

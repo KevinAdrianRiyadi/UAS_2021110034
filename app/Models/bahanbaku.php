@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class userdata extends Authenticatable
+class bahanbaku extends Model
 {
+        protected $table = 'bahanbaku';
     protected $guarded = ['id'];
-    protected $table = 'userdatas';
     public $timestamps = false;
 
-    
+     public function supplier(){
+        return $this->belongsTo(userdata::class,'id_supplier','id');
+    }
 }

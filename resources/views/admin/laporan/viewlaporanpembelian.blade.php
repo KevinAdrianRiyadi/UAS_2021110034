@@ -3,17 +3,18 @@
 
     <body>
         <div class="container mt-5">
-            <h2 class="mb-4">Menu</h2>
+            <h2 class="mb-4">Laporan Pembelian to Supplier</h2>
+            <h5 class="mb-4 text-base">Tanggal 25 Mei - 26 Mei 2025</h5>
+
+            <div class="border-2 border border-dark"></div>
 
             {{-- <form action="{{ route('logout') }}" method="POST">
         @csrf
         <button class="btn btn-primary mb-2">Logout</button>
     </form> --}}
 
-            <a href="/pesananviewadmin">
-                <button class="btn btn-primary mb-3">List Pesanan</button>
-            </a>
-            <a href="/tambahmakananview">
+            {{-- <div class="">
+             <a href="/tambahmakananview">
                 <button class="btn btn-primary mb-3">Add Item Makanan</button>
             </a>
             <a href="/tambahminumanview">
@@ -25,16 +26,22 @@
             <a href="/listitemreorder">
                 <button class="btn btn-primary mb-3">List Item to Reorder</button>
             </a>
+           </div> --}}
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>ID Pesanan</th>
+                        <th>Tanggal</th>
                         <th>Nama</th>
-                        <th>Kategori</th>
-                        <th>Jenis</th>
+                        {{-- <th>Kategori</th> --}}
+                        {{-- <th>Jenis</th> --}}
                         <th>Harga</th>
-                        <th>Stok</th>
-                        <th>Photo</th>
+                        <th>Stok yang dibutuhkan</th>
+                        <th>Total Harga</th>
+                        <th>Nama Supplier</th>
+                        <th>Tanggal Konfirmasi</th>
+                        <th>Action</th>
+                        {{-- <th>Photo</th> --}}
                     </tr>
                 </thead>
                 <tbody id="itemTable">
@@ -42,25 +49,32 @@
                         <tr>
                             {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
                             <td>{{ $item->id }}</td>
+                            <td>{{ $item->tanggal }}</td>
                             <td>{{ $item->nama }}</td>
-                            <td>{{ $item->kategori }}</td>
-                            <td>{{ $item->jenis }}</td>
+                            {{-- <td>{{ $item->kategori }}</td> --}}
                             <td>{{ $item->harga }}</td>
-                            <td>{{ $item->stok }}</td>
-                            <td><img src="{{'storage/'.($item->photo)}}" alt="" class="w-25" srcset="">
+                            <td>{{ $item->jumlah }}</td>
+                            <td>{{ $item->total_harga }}</td>
+                            {{-- <td>{{ $item->supplier->name->first() }}</td> --}}
+                            {{-- <td>{{ $item->supplier->name->first() }}</td> --}}
+                            {{-- @dd($item->supplier) --}}
+                              <td>{{ $item->supplier->name ?? '' }}</td>
+                            <td>{{ $item->tanggal_konfirmasi }}</td>
+                            {{-- <td>{{ $item->jenis }}</td> --}}
+                            {{-- <td><img src="{{'storage/'.($item->photo)}}" alt="" class="w-25" srcset=""> --}}
                             {{-- <p class="text-black"></p></td> --}}
                             <td>
                                 <div class="d-flex justify-content-between">
                                     {{-- @dd($item->jenis) --}}
-                                    @if ($item->jenis === 'makanan')
-                                        <a href="{{ url('editmakanan/' . $item->id) }}"
-                                            class="btn btn-primary me-2">Edit</a>
-                                    @elseif($item->jenis === 'minuman')
-                                        <a href="{{ url('editminuman/' . $item->id) }}"
-                                            class="btn btn-primary me-2">Edit</a>
-                                    @elseif($item->jenis === 'dessert')
-                                        <a href="{{ url('editdessert/' . $item->id) }}"
-                                            class="btn btn-primary me-2">Edit</a>
+                                    @if (auth()->user()->role == 'admin')
+                                        {{-- <a href="{{ url('/' . $item->id) }}" class="btn btn-primary me-2">Edit</a> --}}
+                                    @else
+                                        <form action="{{ url('/updateordersupplier/' . $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-primary me-2">Supply to
+                                                Restaurant</button>
+                                        </form>
                                     @endif
 
                                     @if ($item->jenis === 'makanan')
@@ -71,19 +85,19 @@
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     @elseif($item->jenis === 'minuman')
-                                    <form action="{{ url('deleteminuman/' . $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                        <form action="{{ url('deleteminuman/' . $item->id) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     @elseif($item->jenis === 'dessert')
-                                    <form action="{{ url('deletedessert/' . $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                        <form action="{{ url('deletedessert/' . $item->id) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     @endif
 
                                 </div>

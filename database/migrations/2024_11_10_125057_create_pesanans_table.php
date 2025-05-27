@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('makanan_id')->nullable();
             $table->string('minuman_id')->nullable();
             $table->string('dessert_id')->nullable();
+            $table->string('no_kamar')->nullable();
+            $table->string('notes')->nullable();
             $table->string('status_pesanan');
             $table->string('status_pembayaran');
             $table->string('total_harga');

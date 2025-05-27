@@ -5,7 +5,7 @@
         <a class="navbar-brand" href="{{ route('Home') }}">
 
 
-            Luxury Hotel</a>
+            Hotel X</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,20 @@
                             <a class="nav-link fs-5 active" aria-current="page"
                                 href="{{ route('viewkitchen') }}">Kitchen Menu</a>
                         </li>
-                    @else
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 active" aria-current="page"
+                                href="{{ route('viewlaporan') }}">Laporan Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 active" aria-current="page"
+                                href="{{ route('viewaddsupplier') }}">Supplier Menu</a>
+                        </li>
+                    @elseif (auth()->user()->role == 'supplier')
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 active" aria-current="page"
+                                href="{{ route('viewsupplier') }}">Supplier Menu</a>
+                        </li>
+                        @else
                         <li class="nav-item">
                             <a class="nav-link fs-5 active" aria-current="page"
                                 href="{{ route('viewpesanan') }}">Pelanggan Menu</a>

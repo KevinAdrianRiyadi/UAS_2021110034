@@ -25,13 +25,14 @@
                 <thead>
                     <tr>
                         <th>Pesanan ID</th>
+                        <th>No Kamar</th>
                         <th>Makanan</th>
                         <th>Minuman</th>
                         <th>Dessert</th>
-                        <th>Total Harga</th>
+                        <th>Notes</th>
+                        {{-- <th>Total Harga</th> --}}
                         <th>Status Pembayaran</th>
                         <th>Status Pesanan</th>
-                        <th>UserID</th>
                     </tr>
                 </thead>
                 <tbody id="itemTable">
@@ -39,6 +40,7 @@
                         <tr>
                             {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
                             <td>#{{ $item->id }}</td>
+                            <td>{{ $item->no_kamar }}</td>
                             <td>
                                 @if (isset($item->makanan) && $item->makanan->first())
                                     <p class="text-black"> {{ $item->makanan->first()->nama }}</p>
@@ -53,22 +55,26 @@
                                     <p class="text-black"> {{ $item->dessert->first()->nama }}</p>
                                 @endif
                             </td>
-                            <td>{{ $item->total_harga }}</td>
+                            <td>{{ $item->notes }}</td>
+                            {{-- <td>{{ $item->total_harga }}</td> --}}
                             <td>{{ $item->status_pembayaran }}</td>
                             <td>{{ $item->status_pesanan }}</td>
-                            <td>{{ $item->user_id }}</td>
+                            
                             {{-- <td>{{ $item->stok }}</td> --}}
                             <td>
                                 <div class="d-flex justify-content-between">
                                     <button type="button" class="btn btn-primary" id="launchModalBtn{{ $item->id }}">
                                         Detail
                                     </button>
+                                    @if($item->status_pesanan == 'serve')
+                                    @else
                                     <form action="{{ route('updatekitchen', $item->id) }}" method="POST"
                                         onsubmit="return confirm('Are you sure you want to serve this item?');">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit" class="btn btn-success">Serve</button>
                                     </form>
+                                    @endif
                                 </div>
                             </td>
                             {{-- <td>
@@ -101,7 +107,8 @@
                                       <p class="text-black">Dessert : {{ optional($item->dessert->first())->nama }}</p>
                                       
 
-                                        <p class="text-black">Total Harga Rp {{ $item->total_harga }}</p>
+                                        <p class="text-black">Notes : {{ $item->notes }}</p>
+                                        {{-- <p class="text-black">Total Harga Rp {{ $item->total_harga }}</p> --}}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"

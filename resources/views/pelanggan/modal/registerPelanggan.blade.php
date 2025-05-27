@@ -38,6 +38,7 @@
                             <option selected value="">--SelectRole--</option>
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
+                       {{--     <option value="supplier">Supplier</option>   --}}
                             
                         </select>
                     </div>

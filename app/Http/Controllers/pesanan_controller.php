@@ -14,9 +14,16 @@ class pesanan_controller extends Controller
     public function viewpesanan()
     {
         $datapesanan = pesanan::with('makanan')->with('minuman')->with('dessert')->where('user_id',auth()->user()->id)->get();
-        // dd($datapesanan);
+       // dd($datapesanan);
         $title = 'Pesanan';
         return view('pesanan.pesananview', compact('title', 'datapesanan'));
+    }
+    public function viewpesananadmin()
+    {
+        $datapesanan = pesanan::with('makanan')->with('minuman')->with('dessert')->with('user')->get();
+    //    dd($datapesanan);
+        $title = 'Pesanan';
+        return view('pesanan.pesananviewadmin', compact('title', 'datapesanan'));
     }
     public function editpesanan($id)
     {
@@ -33,13 +40,15 @@ class pesanan_controller extends Controller
         return view('pesanan.tambahpesanan', compact('datamakanan', 'dataminuman', 'datadessert'));
     }
 
-    public function pay($id)
+    public function pay($id,Request $request)
     {
+        // dd($request);
+        $paymethod = $request->paymethod;
         $data = pesanan::find($id);
-        $data->status_pembayaran = 'paid';
+        $data->status_pembayaran = 'paid with'.' '. $paymethod;
         $data->save();
         // dd($data);
-        return redirect()->route('viewpesanan')->with('success', 'Pesanan Berhasil Dibayar');
+        return redirect()->route('viewpesananadmin')->with('success', 'Pesanan Berhasil Dibayar');
     }
 
     public function payview($id)
@@ -62,6 +71,8 @@ class pesanan_controller extends Controller
             'makanan_id' => $request->input('makanan_id'),
             'minuman_id' => $request->input('minuman_id'),
             'dessert_id' => $request->input('dessert_id'),
+            'no_kamar' => $request->input('nokamar'),
+            'notes' => $request->input('notes'),
             'status_pesanan' => 'order',
             'status_pembayaran' => 'not paid',
             // 'total_harga' => '10000',

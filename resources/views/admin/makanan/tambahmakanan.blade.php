@@ -10,7 +10,7 @@
 
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">Tambah Makanan</h2>
+        <h2 class="mb-4">Tambah Menu</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -25,24 +25,30 @@
         <form action="{{ route('tambahmakanan') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Nama Makanan</label>
+                <label for="name" class="form-label">Nama Menu</label>
                 <input type="text" class="form-control" id="nama" name="nama" required>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Kategori Makanan</label>
+                <label for="name" class="form-label">Kategori Menu</label>
                 <select class="primary_type" aria-label="Default select example" name="kategori">
                     <option selected>Open this select menu</option>
                     <option value="IndonesianFood">Indonesian Food</option>
                     <option value="WesternFood">Western Food</option>
                     <option value="KoreanFood">Korean Food</option>
+                    <option value="KoreanFood">Cocktail</option>
+                    <option value="KoreanFood">Mocktail</option>
+                    <option value="KoreanFood">Beer</option>
+                    <option value="KoreanFood">Ice Cream</option>
+                    <option value="KoreanFood">Cake</option>
+                    <option value="KoreanFood">Waffle</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">harga</label>
+                <label for="name" class="form-label">Harga</label>
                 <input type="number" class="form-control" id="harga" name="harga" required>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">stok</label>
+                <label for="name" class="form-label">Stok</label>
                 <input type="number" class="form-control" id="stok" name="stok" required>
             </div>
             <div class="mb-3">

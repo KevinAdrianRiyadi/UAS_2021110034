@@ -32,13 +32,13 @@
                         <th>Tanggal</th>
                         <th>Nama</th>
                         {{-- <th>Kategori</th> --}}
-                        {{-- <th>Jenis</th> --}}
+                        <th>Satuan</th>
                         <th>Harga</th>
                         <th>Stok yang dibutuhkan</th>
                         <th>Total Harga</th>
-                        <th>Nama Supplier</th>
-                        <th>Tanggal Konfirmasi</th>
-                        <th>Action</th>
+                        {{-- <th>Nama Supplier</th> --}}
+                        {{-- <th>Tanggal Konfirmasi</th> --}}
+                        {{-- <th>Action</th> --}}
                         {{-- <th>Photo</th> --}}
                     </tr>
                 </thead>
@@ -50,14 +50,17 @@
                             <td>{{ $item->tanggal }}</td>
                             <td>{{ $item->nama }}</td>
                             {{-- <td>{{ $item->kategori }}</td> --}}
-                            <td>{{ $item->harga }}</td>
+                            <td>{{ $item->satuan }}</td>
+                            <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
+
                             <td>{{ $item->jumlah }}</td>
-                            <td>{{ $item->total_harga }}</td>
+                            <td>Rp {{ number_format($item->total_harga, 0, ',', '.') }}</td>
+
                             {{-- <td>{{ $item->supplier->name->first() }}</td> --}}
                             {{-- <td>{{ $item->supplier->name->first() }}</td> --}}
                             {{-- @dd($item->supplier) --}}
-                            <td>{{ $item->supplier->name ?? '' }}</td>
-                            <td>{{ $item->tanggal_konfirmasi }}</td>
+                            {{-- <td>{{ $item->supplier->name ?? '' }}</td> --}}
+                            {{-- <td>{{ $item->tanggal_konfirmasi }}</td> --}}
                             {{-- <td>{{ $item->jenis }}</td> --}}
                             {{-- <td><img src="{{'storage/'.($item->photo)}}" alt="" class="w-25" srcset=""> --}}
                             {{-- <p class="text-black"></p></td> --}}
@@ -67,7 +70,7 @@
                                     @if (auth()->user()->role == 'admin')
                                         {{-- <a href="{{ url('/' . $item->id) }}" class="btn btn-primary me-2">Edit</a> --}}
                                     @else
-                                        @if ($item->tanggal_konfirmasi ==! null)
+                                        @if ($item->tanggal_konfirmasi == !null)
                                         @else
                                             <form action="{{ url('/updateordersupplier/' . $item->id) }}" method="POST">
                                                 @csrf
@@ -75,8 +78,8 @@
                                                 <button type="submit" class="btn btn-primary me-2">Supply to
                                                     Restaurant</button>
                                             </form>
-                                            @endif
                                         @endif
+                                    @endif
 
 
 

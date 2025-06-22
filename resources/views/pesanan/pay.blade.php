@@ -12,13 +12,6 @@
                     @if(isset($data->makanan)  && $data->makanan->first())
                     <p class="text-black">Makanan: {{ $data->makanan->first()->nama }}</p>
                     @endif
-                    @if(isset($data->minuman)  && $data->minuman->first())
-                    <p class="text-black">Minuman: {{ $data->minuman->first()->nama }}</p>
-                    @endif
-                    @if(isset($data->dessert)  && $data->dessert->first())
-                    <p class="text-black">Desert: {{ $data->dessert->first()->nama }}</p>
-                    @endif
-                    {{-- @dd($data) --}}
                     <p class="text-black">TotalHarga: {{ $data->total_harga }}</p>
                     <div class="m-4">
                         <select name="paymethod" id="paymethod">

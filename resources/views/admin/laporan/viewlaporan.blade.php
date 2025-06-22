@@ -24,13 +24,13 @@
             <a href="/viewlaporanpenjualan">
                 <p class="border border-2 border-black p-2">Laporan Penjualan</p>
             </a>
-            <a class="">
+            <a href="/viewstokbarangexpired">
                 <p class="border border-2 border-black p-2">Laporan Bahan Baku Rusak</p>
             </a>
-            <a class="">
+            <a href="/viewlaporanpenggunaanbahanbaku">
                 <p class="border border-2 border-black p-2">Laporan Pemakaian Bahan Baku</p>
             </a>
-            <a class="">
+            <a href="viewlaporanpersediaan">
                 <p class="border border-2 border-black p-2">Laporan Persediaan Bahan Baku</p>
             </a>
 

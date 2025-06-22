@@ -26,10 +26,8 @@
                     <tr>
                         <th>Pesanan ID</th>
                         <th>No Kamar</th>
-                        <th>Makanan</th>
-                        <th>Minuman</th>
-                        <th>Dessert</th>
-                        <th>Notes</th>
+                        <th>Menu</th>
+                        {{-- <th>Notes</th> --}}
                         {{-- <th>Total Harga</th> --}}
                         <th>Status Pembayaran</th>
                         <th>Status Pesanan</th>
@@ -42,38 +40,37 @@
                             <td>#{{ $item->id }}</td>
                             <td>{{ $item->no_kamar }}</td>
                             <td>
-                                @if (isset($item->makanan) && $item->makanan->first())
-                                    <p class="text-black"> {{ $item->makanan->first()->nama }}</p>
-                                @endif
+                                @foreach ($item->pesanandetail as $detail)
+                                    <li>
+                                        {{ $detail->makanan->nama }}
+                                        {{ $detail->jumlah }}
+
+                                        {{-- {{ 'Rp ' . number_format($detail->totalharga, 0, ',', '.') }} --}}
+
+                                        {{ $detail->catatan }}
+                                    </li>
+                                @endforeach
                             </td>
-                            <td>
-                                @if (isset($item->minuman) && $item->minuman->first())
-                                    <p class="text-black"> {{ $item->minuman->first()->nama }}</p>
-                                @endif
-                            </td>                            <td>
-                                @if (isset($item->dessert) && $item->dessert->first())
-                                    <p class="text-black"> {{ $item->dessert->first()->nama }}</p>
-                                @endif
-                            </td>
-                            <td>{{ $item->notes }}</td>
+
+                            {{-- <td>{{ $item->notes }}</td> --}}
                             {{-- <td>{{ $item->total_harga }}</td> --}}
                             <td>{{ $item->status_pembayaran }}</td>
                             <td>{{ $item->status_pesanan }}</td>
-                            
+
                             {{-- <td>{{ $item->stok }}</td> --}}
                             <td>
                                 <div class="d-flex justify-content-between">
                                     <button type="button" class="btn btn-primary" id="launchModalBtn{{ $item->id }}">
                                         Detail
                                     </button>
-                                    @if($item->status_pesanan == 'serve')
+                                    @if ($item->status_pesanan == 'serve')
                                     @else
-                                    <form action="{{ route('updatekitchen', $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to serve this item?');">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-success">Serve</button>
-                                    </form>
+                                        <form action="{{ route('updatekitchen', $item->id) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to serve this item?');">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success">Serve</button>
+                                        </form>
                                     @endif
                                 </div>
                             </td>
@@ -93,21 +90,30 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle{{ $item->id }}">Pesanan ID {{$item->id}}
+                                        <h5 class="modal-title" id="exampleModalLongTitle{{ $item->id }}">Pesanan ID
+                                            {{ $item->id_detailpesanan }}
                                         </h5>
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        
-                                      {{-- makanan : {{ $item->makanan->first()->nama }} --}}
-                                      <p class="text-black">Makanan : {{ optional($item->makanan->first())->nama }}</p>
-                                      <p class="text-black">Minuman : {{ optional($item->minuman->first())->nama }}</p>
-                                      <p class="text-black">Dessert : {{ optional($item->dessert->first())->nama }}</p>
-                                      
 
-                                        <p class="text-black">Notes : {{ $item->notes }}</p>
+                                        {{-- makanan : {{ $item->makanan->first()->nama }} --}}
+                                        {{-- @dd($item->makanan) --}}
+                                        <div class="text-black">Menu : </div>
+                                        
+                                        @foreach ($item->pesanandetail as $detail)
+                                            <li> {{ optional($detail->makanan)->nama }} - {{$detail->jumlah}} item 
+                                                @if($detail->catatan ==! null)
+                                            <p>Notes: {{$detail->catatan}}</p>
+                                        @endif</li>
+                                        @endforeach
+
+
+
+
+                                        {{-- <p class="text-black">Notes : {{ $item->notes }}</p> --}}
                                         {{-- <p class="text-black">Total Harga Rp {{ $item->total_harga }}</p> --}}
                                     </div>
                                     <div class="modal-footer">

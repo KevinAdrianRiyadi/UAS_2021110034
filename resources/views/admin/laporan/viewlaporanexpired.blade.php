@@ -1,51 +1,60 @@
 @extends('pelanggan.layout.index')
 @section('content')
 
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.4.4/dist/css/tempus-dominus.min.css" rel="stylesheet">
+
+</head>
     <body>
         <div class="container mt-5">
-            <h2 class="mb-4">Laporan Penjualan </h2>
-            {{-- <h5 class="mb-4 text-base">Bulan Mei-Juni 2025</h5> --}}
-
-            {{-- <div class="border-2 border border-dark"></div> --}}
-            <div class="flex-row justify-center">
-                Total Pesanan {{ $totalpesanan }}
-                Total Pendapatan
-                {{ 'Rp ' . number_format($totalharga, 0, ',', '.') }}
-
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-4">
-                        <h4 class="font-bold">Makanan yang terjual:</h4>
-                        @foreach ($makanan as $item)
-                            <li>{{ optional($item->makanan)->nama ?? ' ' }} - Jumlah Terjual: {{ $item->jumlah }}</li>
-                            <p>Total Pendapatan : {{ 'Rp ' . number_format($item->totalharga, 0, ',', '.') }}
-
-                                                
-                            </p>
-                        @endforeach
-                    </div>
-                    <div class="col-4">
-                        <h4 class="font-bold">minuman yang terjual:</h4>
-                        @foreach ($minuman as $item)
-                            <li>{{ optional($item->makanan)->nama ?? ' ' }} - Jumlah Terjual: {{ $item->jumlah }}</li>
-                            <p>Total Pendapatan : {{ 'Rp ' . number_format($item->totalharga, 0, ',', '.') }}</p>
-                        @endforeach
-                    </div>
-                    <div class="col-4">
-                        <h4 class="font-bold">Dessert yang terjual:</h4>
-                        @foreach ($dessert as $item)
-                            <li>{{ optional($item->makanan)->nama ?? ' ' }} - Jumlah Terjual: {{ $item->jumlah }}</li>
-                            <p>Total Pendapatan : {{ 'Rp ' . number_format($item->totalharga, 0, ',', '.') }}</p>
-                        @endforeach
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
+            <h2 class="mb-4">Laporan Bahan Baku Rusak / Expired</h2>
+{{-- 
+            <a href="/viewaddstokbahanbaku">
+                <button class="btn btn-primary mb-3">Add stok bahanbaku</button>
+            </a> --}}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nama Bahan</th>
+                        <th>Stok Bahan</th>
+                        <th>Exp Date</th>
+                        <th>Satuan</th>
+                        <th>Status</th>
+                        {{-- <th>Action</th> --}}
+                    </tr>
+                </thead>
+                <tbody id="itemTable">
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->namabahan }}</td>
+                            <td>{{ $item->stokbahan }}</td>
+                            <td>{{ $item->expdate }}</td>
+                            <td>{{ $item->satuan }}</td>
+                            <td>{{ $item->status }}</td>
+                            {{-- <td>
+                                <div class="d-flex ">
+                                    <a href="{{ url('editmakanan/' . $item->id) }}"
+                                            class="btn btn-primary me-2">Edit</a>
+                                    <a href="{{ url('editmakanan/' . $item->id) }}"
+                                            class="btn btn-primary me-2">Delete</a>
+                                </div>
+                            </td> --}}
+                            {{-- <td>
+                        <button class="btn btn-warning btn-sm" onclick="editItem({{ $item->id }})">Edit</button>
+                        <form action="{{ route('items.destroy', $item) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td> --}}
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {{-- {{ $data->links() }}    --}}
         </div>
 
         <div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">

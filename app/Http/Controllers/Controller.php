@@ -18,26 +18,26 @@ class Controller extends BaseController
         $makananindonesia = makanan::where('kategori','IndonesianFood')->get();
         $makananwestern = makanan::where('kategori','WesternFood')->get();
         $makanankorean = makanan::where('kategori','KoreanFood')->get();
-        $minuman = minuman::all();
-        $dessert = dessert::all();
+        // $minuman = minuman::all();
+        // $dessert = dessert::all();
         $title = 'Home';
-        return view('pelanggan.page.home2', compact('makananindonesia','makananwestern','makanankorean','title','minuman','dessert'));
+        return view('pelanggan.page.home2', compact('makananindonesia','makananwestern','makanankorean','title'));
 
     }
     public function minuman()
     {
-        $cocktail = minuman::where('kategori','Cocktail')->get();
-        $mocktail = minuman::where('kategori','Mocktail')->get();
-        $beer = minuman::where('kategori','Beer')->get();
+        $cocktail = makanan::where('kategori','Cocktail')->get();
+        $mocktail = makanan::where('kategori','Mocktail')->get();
+        $beer = makanan::where('kategori','Beer')->get();
         $title = 'Home';
         return view('pelanggan.page.home2minuman', compact('cocktail','mocktail','beer','title'));
 
     }
     public function dessert()
     {
-        $icecream = dessert::where('kategori','IceCream')->get();
-        $cake = dessert::where('kategori','Cake')->get();
-        $waffle = dessert::where('kategori','Waffle')->get();
+        $icecream = makanan::where('kategori','IceCream')->get();
+        $cake = makanan::where('kategori','Cake')->get();
+        $waffle = makanan::where('kategori','Waffle')->get();
         $title = 'Home';
         return view('pelanggan.page.home2dessert', compact('icecream','cake','waffle','title'));
 

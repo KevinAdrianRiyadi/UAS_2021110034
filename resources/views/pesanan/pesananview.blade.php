@@ -3,7 +3,7 @@
 
     <body>
         <div class="container mt-5">
-            <h2 class="mb-4">Keranjang Pesanan</h2>
+            <h2 class="mb-4">Pesanan</h2>
 
             {{-- <form action="{{ route('logout') }}" method="POST">
         @csrf
@@ -17,9 +17,8 @@
                 <thead>
                     <tr>
                         {{-- <th>ID</th> --}}
-                        <th>Makanan</th>
-                        <th>Minuman</th>
-                        <th>Dessert</th>
+                        <th>ID Pesanan</th>
+
                         <th>Total Harga</th>
                         <th>No Kamar</th>
                         <th>Notes</th>
@@ -31,23 +30,15 @@
                     @foreach ($datapesanan as $item)
                         <tr>
                             {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
-                            {{-- <td>{{ $item->id }}</td> --}}
+                            <td>{{ $item->id_detailpesanan }}</td>
                             {{-- <td>{{ $item->makanan->first()['nama'] }}</td> --}}
-                            <td>
+                            {{-- <td>
                                 @if (isset($item->makanan) && $item->makanan->first())
                                     <p class="text-black"> {{ $item->makanan->first()->nama }}</p>
                                 @endif
-                            </td>
-                            <td>
-                                @if (isset($item->minuman) && $item->minuman->first())
-                                    <p class="text-black"> {{ $item->minuman->first()->nama }}</p>
-                                @endif
-                            </td>
-                                <td>
-                                    @if (isset($item->dessert) && $item->dessert->first())
-                                        <p class="text-black"> {{ $item->dessert->first()->nama }}</p>
-                                    @endif
-                                </td>
+                            </td> --}}
+
+                            
                             <td>{{ $item->total_harga }}</td>
                             <td>{{ $item->no_kamar }}</td>
                             <td>{{ $item->notes }}</td>
@@ -57,14 +48,16 @@
                             <td>
                                 <div class="d-flex justify-content-between">
                                     {{-- @dd($item->id) --}}
-                                    {{-- <a href="{{ route('editpesanan', $item->id) }}" class="btn btn-primary me-2">Edit</a> --}}
+                                    <a href="{{ route('detailpesanan', $item->id_detailpesanan) }}" class="btn btn-primary me-2">Detail Pesanan</a>
                                     {{-- <a href="{{ route('payview', $item->id) }}" class="btn btn-primary me-2">Pay</a> --}}
-                                    <form action="{{ route('deletepesanan', $item->id) }}" method="POST"
+                                    {{-- @if($item->status_pesanan == 'order')
+                                                                        <form action="{{ route('deletepesanan', $item->id) }}" method="POST"
                                         onsubmit="return confirm('Are you sure you want to delete this item?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
+                                    @endif --}}
                                 </div>
                             </td>
                             {{-- <td>

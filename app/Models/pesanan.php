@@ -12,7 +12,7 @@ class pesanan extends Model
     protected $table = 'pesanan';
 
     public function makanan(){
-        return $this->hasMany(makanan::class,'id','makanan_id');
+        return $this->hasMany(makanan::class,'id','menu_id');
     }
     public function user(){
         return $this->hasMany(userdata::class,'id','user_id');
@@ -22,6 +22,9 @@ class pesanan extends Model
     }
     public function dessert(){
         return $this->hasMany(dessert::class,'id','dessert_id');
+    }
+    public function pesanandetail(){
+        return $this->hasMany(pesanandetail::class,'id_pesanan','id_detailpesanan');
     }
 
 }

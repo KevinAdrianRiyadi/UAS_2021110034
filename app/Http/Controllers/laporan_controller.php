@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\bahanbaku;
+use App\Models\logpemakaianbahanbaku;
+use App\Models\makanan;
 use App\Models\pesanan;
+use App\Models\pesanandetail;
+use App\Models\stokbahanbaku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,23 +34,56 @@ class laporan_controller extends Controller
         $totalharga = pesanan::sum('total_harga');
 
 
-        $makanan = Pesanan::select('makanan_id', DB::raw('count(*) as total'))
-            ->whereNotNull('makanan_id')
-            ->groupBy('makanan_id')
-            ->with('makanan')
-            ->get();
-        $minuman = Pesanan::select('minuman_id', DB::raw('count(*) as total'))
-            ->whereNotNull('minuman_id')
-            ->with('minuman')
-            ->groupBy('minuman_id')
-            ->get();
-        $dessert = Pesanan::select('dessert_id', DB::raw('count(*) as total'))
-            ->whereNotNull('dessert_id')
-            ->with('dessert')
-            ->groupBy('dessert_id')
-            ->get();
+        // $makanan = Pesanan::select('menu_id', DB::raw('count(*) as total'))
+        //     ->groupBy('menu_id')
+        //     ->with('makanan')
+        //     ->get();
+
+        
+        $menuIds = makanan::where('jenis', 'makanan')->pluck('id');
+        $makanan = pesanandetail::whereIn('id_menu', $menuIds)->with('makanan')->get();
+        $menuminuman = makanan::where('jenis', 'minuman')->pluck('id');
+        $minuman = pesanandetail::whereIn('id_menu', $menuminuman)->with('makanan')->get();
+        $menudessert = makanan::where('jenis', 'dessert')->pluck('id');
+        $dessert = pesanandetail::whereIn('id_menu', $menudessert)->with('makanan')->get();
+        // $minuman = DB::table('pesanan')
+        //     ->join('makanan', 'pesanan.menu_id', '=', 'makanan.id')
+        //     ->where('makanan.jenis', 'minuman')
+        //     ->select('pesanan.*')
+        //     ->with('makanan')
+        //     ->get();
+
+        // $menuIds = makanan::where('jenis', 'minuman')->pluck('id');
+        // $minuman = pesanan::whereIn('menu_id', $menuIds)->with('makanan')->get();
+
+        // $menuIds = makanan::where('jenis', 'dessert')->pluck('id');
+        // $dessert = pesanan::whereIn('menu_id', $menuIds)->with('makanan')->get();
 
 
-        return view('admin.laporan.viewlaporanpenjualan', compact('title', 'data', 'makanan', 'minuman', 'dessert', 'totalpesanan', 'totalharga'));
+        // dd($makanan);
+
+        return view('admin.laporan.viewlaporanpenjualan', compact('title', 'data', 'makanan','minuman','dessert', 'totalpesanan', 'totalharga'));
+    }
+
+    public function viewstokbarangexpired()
+    {
+        $data = stokbahanbaku::whereNot('status', null)->get();
+        $title = 'Stok Barang Expired';
+        return view('admin.laporan.viewlaporanexpired', compact('data', 'title'));
+    }
+
+    public function viewlaporanpenggunaanbahanbaku()
+    {
+        $data = logpemakaianbahanbaku::with('namamenu', 'stokbahan')->get();
+        $title = 'Log Pemakaian Bahan Baku';
+        // dd($data);
+        return view('admin.laporan.viewlaporanpenggunaanbahanbaku', compact('data', 'title'));
+    }
+
+    public function viewlaporanpersediaan()
+    {
+        $title = 'Laporan Persediaan';
+        $data = stokbahanbaku::all();
+        return view('admin.laporan.laporanpersediaan', compact('title', 'data'));
     }
 }

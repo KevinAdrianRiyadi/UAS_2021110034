@@ -30,15 +30,23 @@
                             <a class="nav-link fs-5 active" aria-current="page"
                                 href="{{ route('viewaddsupplier') }}">Supplier Menu</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 active" aria-current="page"
+                                href="{{ route('viewstokbahanbaku') }}">Bahan Baku</a>
+                        </li>
                     @elseif (auth()->user()->role == 'supplier')
                         <li class="nav-item">
                             <a class="nav-link fs-5 active" aria-current="page"
                                 href="{{ route('viewsupplier') }}">Supplier Menu</a>
                         </li>
-                        @else
+                    @else
                         <li class="nav-item">
                             <a class="nav-link fs-5 active" aria-current="page"
                                 href="{{ route('viewpesanan') }}">Pelanggan Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 active" aria-current="page"
+                                href="{{ route('keranjang') }}">Keranjang</a>
                         </li>
                     @endif
                 @else

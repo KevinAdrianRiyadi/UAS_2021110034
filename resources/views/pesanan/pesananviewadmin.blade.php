@@ -9,7 +9,7 @@
         @csrf
         <button class="btn btn-primary mb-2">Logout</button>
     </form> --}}
-{{-- 
+            {{-- 
             <a href="/tambahpesananview">
                 <button class="btn btn-primary mb-3">Add Item</button>
             </a> --}}
@@ -17,11 +17,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nama</th>
+                        <th>Nama Pelanggan</th>
                         <th>No Kamar</th>
-                        <th>Makanan</th>
-                        <th>Minuman</th>
-                        <th>Dessert</th>
+                        <th>Menu</th>
                         <th>Total Harga</th>
                         <th>Notes</th>
                         <th>Status Pembayaran</th>
@@ -31,28 +29,27 @@
                 </thead>
                 <tbody id="itemTable">
                     @foreach ($datapesanan as $item)
-                    <tr>
-                        {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->user->first()->name }}</td>
-                        <td>{{ $item->no_kamar }}</td>
-                            {{-- <td>{{ $item->makanan->first()['nama'] }}</td> --}}
+                        <tr>
+                            {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
+                            <td>{{ $item->id_detailpesanan }}</td>
+                            <td>{{ $item->user->first()->name }}</td>
+                            <td>{{ $item->no_kamar }}</td>
                             <td>
-                                @if (isset($item->makanan) && $item->makanan->first())
-                                    <p class="text-black"> {{ $item->makanan->first()->nama }}</p>
-                                @endif
+                                @foreach ($item->pesanandetail as $detail)
+                                    <li>
+                                        {{ $detail->makanan->nama }}
+                                        {{ $detail->jumlah }}
+
+                                        {{ 'Rp ' . number_format($detail->totalharga, 0, ',', '.') }}
+
+                                        {{ $detail->catatan }}
+                                    </li>
+                                @endforeach
                             </td>
+                            {{-- @dd($item->pesanandetail->makanan->nama) --}}
                             <td>
-                                @if (isset($item->minuman) && $item->minuman->first())
-                                    <p class="text-black"> {{ $item->minuman->first()->nama }}</p>
-                                @endif
+                                {{ 'Rp ' . number_format($item->total_harga, 0, ',', '.') }}
                             </td>
-                                <td>
-                                    @if (isset($item->dessert) && $item->dessert->first())
-                                        <p class="text-black"> {{ $item->dessert->first()->nama }}</p>
-                                    @endif
-                                </td>
-                            <td>{{ $item->total_harga }}</td>
                             <td>{{ $item->notes }}</td>
                             <td>{{ $item->status_pembayaran }}</td>
                             <td>{{ $item->status_pesanan }}</td>
@@ -61,8 +58,8 @@
                                 <div class="d-flex justify-content-between">
                                     {{-- @dd($item->id) --}}
                                     {{-- <a href="{{ route('editpesanan', $item->id) }}" class="btn btn-primary me-2">Edit</a> --}}
-                                    @if($item->status_pembayaran == 'not paid')
-                                    <a href="{{ route('payview', $item->id) }}" class="btn btn-primary me-2">Pay</a>
+                                    @if ($item->status_pembayaran == 'not paid')
+                                        <a href="{{ route('payview', $item->id) }}" class="btn btn-primary me-2">Pay</a>
                                     @endif
                                     {{-- <form action="{{ route('deletepesanan', $item->id) }}" method="POST"
                                         onsubmit="return confirm('Are you sure you want to delete this item?');">

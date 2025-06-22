@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bahanbaku;
+use App\Models\stokbahanbaku;
 use App\Models\userdata;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ class supplier_controller extends Controller
     {
         // $suppliers = Supplier::all();
         $title = 'viewaddsupplier';
-        return view('admin.viewaddsupplier', compact('title'));
+        $data = stokbahanbaku::all();
+        return view('admin.viewaddsupplier', compact('title', 'data'));
     }
     public function viewordersupplier()
     {
@@ -22,32 +24,40 @@ class supplier_controller extends Controller
         $title = 'viewordersupplier';
         $data = bahanbaku::with('supplier')->get();
         // dd($data);
-        return view('supplier.viewordersupplier', compact('title','data'));
+        return view('supplier.viewordersupplier', compact('title', 'data'));
     }
 
     public function ordertosupplier(Request $request)
     {
+        // dd($request);
         $title = 'ordertosupplier';
         Carbon::setLocale('id');
-        $harga = $request->input('harga');
+
+        $databahanbaku = stokbahanbaku::where('id', $request->id_stokbahanbaku)->first();
+        $harga = $databahanbaku->harga;
         $jumlah = $request->input('jumlah');
         $totalharga = $harga * $jumlah;
-        // dd($request);
+        // dd($totalharga);
         $data = [
-            'nama' => $request->input('nama'),
-            'jumlah' => $request->input('jumlah'),
-            'satuan' => $request->input('satuan'),
-            'harga' => $request->input('harga'),
-            // 'tanggal' => $request->input('tanggal'),
-            'tanggal'=> Carbon::now()->translatedFormat('d-F-Y'),
-            'total_harga'=> $totalharga,
+            'nama' => $databahanbaku->namabahan,
+            'jumlah' => $jumlah,
+            'satuan' => $databahanbaku->satuan,
+            'harga' => $harga,
+            'tanggal' => Carbon::now()->translatedFormat('d-F-Y'),
+            'total_harga' => $totalharga,
         ];
-        // dd($data);
+        // dd($databahanbaku);
         bahanbaku::create($data);
-        return redirect('/');
+
+        $stokbahan = $databahanbaku->stokbahan;
+        $databahanbaku->stokbahan = $stokbahan + $jumlah;
+        $databahanbaku->save();// update data
+
+        return redirect('viewaddsupplier');
     }
 
-    public function updateordersupplier (Request $request, $id){
+    public function updateordersupplier(Request $request, $id)
+    {
         // dd($id);
         $data = bahanbaku::find($id);
         $data->id_supplier = auth()->user()->id;

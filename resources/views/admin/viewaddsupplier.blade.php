@@ -17,48 +17,54 @@
             </div>
         @endif
 
-        <form action="{{ route('ordertosupplier') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            {{-- <div class="mb-3">
-                <label for="name" class="form-label">Nama Supplier</label>
-               <select class="primary_type" aria-label="Default select example" name="NamaSupplier">
-                    <option selected>Open this select menu</option>
-                    <option value="Supplier A">Supplier A</option>
-                    <option value="Supplier B">Supplier B</option>
-                    <option value="Supplier C">Supplier C</option>
-                    <option value="Supplier D">Supplier D</option>
-                </select>
-            </div> --}}
-
-            <div class="mb-3">
-                <label for="name" class="form-label">Nama Bahan Baku</label>
-                <input type="text" class="form-control" id="nama" name="nama" required>
-            </div>
-            <div class="mb-3">
-                <label for="name" class="form-label">Jumlah</label>
-                <input type="number" class="form-control" id="jumlah" name="jumlah" required>
-            </div>
-            <div class="mb-3">
-                <label for="name" class="form-label">satuan</label>
-                {{-- <input type="text" class="form-control" id="satuan" name="satuan" required> --}}
-                <select class="primary_type" aria-label="Default select example" name="satuan">
-                    <option selected>Open this select menu</option>
-                    <option value="kg">kg</option>
-                    <option value="liter">liter</option>
-                    <option value="pack">pack</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="name" class="form-label">Harga satuan</label>
-                <input type="text" class="form-control" id="harga" name="harga" required>
-            </div>
-            <div class="mb-3">
-                {{-- <label for="name" class="form-label">Total Harga</label>
-                <input type="number" class="form-control" id="harga" name="harga" required>
-            </div> --}}
-                <button type="submit" class="btn btn-primary">Create Item</button>
-                {{-- <a href="{{ route('items.index') }}" class="btn btn-secondary">Back</a> --}}
-        </form>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <form action="{{ route('ordertosupplier') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-3">
+          <label for="name" class="form-label">Nama Bahan Baku</label>
+          <select name="id_stokbahanbaku" id="id_stokbahanbaku" class="form-select" required>
+            <option value="">--Select bahan baku--</option>
+            @foreach ($data as $bahan)
+              <option value="{{ $bahan->id }}">{{ $bahan->namabahan }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="jumlah" class="form-label">Jumlah Barang yang dipesan</label>
+          <input type="number" class="form-control" id="jumlah" name="jumlah" required>
+        </div>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary">Create Item</button>
+        </div>
+      </form>
     </div>
 
-@endsection
+    <div class="col-sm-6 text-center">
+        List Bahan Baku
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Harga</th>
+            <th>Satuan</th>
+            <th>Stok</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($data as $bahan)
+            <tr>
+              <td>{{ $bahan->namabahan }}</td>
+              <td>{{ $bahan->harga }}</td>
+              <td>{{ $bahan->satuan }}</td>
+              <td>{{ $bahan->stokbahan }}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+    @endsection

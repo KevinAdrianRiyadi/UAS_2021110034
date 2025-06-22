@@ -53,6 +53,6 @@
 
 </div>
 <div class="text-center p-lg-4 mt-3">
-    Copyright @Hotel X 2024 </i>
+    Copyright @Hotel X 2025 </i>
 </div>
 </div>

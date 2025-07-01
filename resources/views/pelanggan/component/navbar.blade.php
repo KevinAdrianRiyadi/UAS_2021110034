@@ -16,7 +16,7 @@
                 @if (auth()->user())
                     @if (auth()->user()->role == 'admin')
                         <li class="nav-item">
-                            <a class="nav-link fs-5 active" aria-current="page" href="adminmenu">Admin Menu</a>
+                            <a class="nav-link fs-5 active" aria-current="page" href="{{ route('adminmenu') }}">Admin Menu</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fs-5 active" aria-current="page"

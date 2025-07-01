@@ -95,7 +95,7 @@ class pesanan_controller extends Controller
         $customID = '' . $today . $idpesan;
         $harga = makanan::where('id', $request->input('makanan_id'))->value('harga');
         $data = [
-            'id_pesanan' => 'ORDR_' . $today . $idpesan,
+            'id_pesanan' =>  $today . $idpesan,
             'id_menu' => $request->input('makanan_id'),
             'jumlah' => $request->input('jumlah'),
             'catatan' => $request->input('note'),
@@ -137,7 +137,7 @@ class pesanan_controller extends Controller
     }
     public function insertpesanan(Request $request)
     {
-        // dd($request);
+        dd($request);
         $data = [
             'makanan_id' => $request->input('makanan_id'),
             'minuman_id' => $request->input('minuman_id'),
@@ -196,7 +196,7 @@ class pesanan_controller extends Controller
 
         $minumanId = $request->input('minuman_id');
         if ($minumanId) {
-            $minuman = minuman::find($minumanId);
+            $minuman = makanan::find($minumanId);
             if ($minuman) {
                 if ($minuman->stok > 0) {
                     $minuman->stok -= 1;
@@ -216,7 +216,7 @@ class pesanan_controller extends Controller
 
         $dessertId = $request->input('dessert_id');
         if ($dessertId) {
-            $dessert = dessert::find($dessertId);
+            $dessert = makanan::find($dessertId);
             if ($dessert) {
                 if ($dessert->stok > 0) {
                     $dessert->stok -= 1;
@@ -234,8 +234,8 @@ class pesanan_controller extends Controller
         }
 
         $hargamakanan = makanan::where('id', $request->input('makanan_id'))->value('harga');
-        $hargaminuman = minuman::where('id', $request->input('minuman_id'))->value('harga');
-        $hargadessert = dessert::where('id', $request->input('dessert_id'))->value('harga');
+        $hargaminuman = makanan::where('id', $request->input('minuman_id'))->value('harga');
+        $hargadessert = makanan::where('id', $request->input('dessert_id'))->value('harga');
         $total = $hargamakanan + $hargaminuman + $hargadessert;
         // dd($total);
         $data['total_harga'] = $total;

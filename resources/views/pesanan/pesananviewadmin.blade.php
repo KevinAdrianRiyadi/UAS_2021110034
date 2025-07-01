@@ -21,7 +21,7 @@
                         <th>No Kamar</th>
                         <th>Menu</th>
                         <th>Total Harga</th>
-                        <th>Notes</th>
+                        {{-- <th>Notes</th> --}}
                         <th>Status Pembayaran</th>
                         <th>Status Pesanan</th>
                         <th>Pay</th>
@@ -50,7 +50,7 @@
                             <td>
                                 {{ 'Rp ' . number_format($item->total_harga, 0, ',', '.') }}
                             </td>
-                            <td>{{ $item->notes }}</td>
+                            {{-- <td>{{ $item->notes }}</td> --}}
                             <td>{{ $item->status_pembayaran }}</td>
                             <td>{{ $item->status_pesanan }}</td>
                             {{-- <td>{{ $item->stok }}</td> --}}

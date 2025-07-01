@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\dessert;
 use App\Models\kitchen;
+use App\Models\logpemakaianbahanbaku;
 use App\Models\makanan;
 use App\Models\minuman;
 use App\Models\pesanan;
+use App\Models\pesanandetail;
 use App\Models\resep;
 use App\Models\stokbahanbaku;
+use App\Models\stokbahanbakurusak;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -44,10 +47,13 @@ class kitchen_controller extends Controller
         $data = stokbahanbaku::all();
         $title = 'Bahan Baku';
 
-
-
-
         return view('admin.kitchen.viewstokbahanbaku', compact('data', 'title'));
+    }
+    public function viewstokbahanbakurusak()
+    {
+        $data = stokbahanbakurusak::all();
+        $title = 'Bahan Baku Rusak';
+        return view('admin.kitchen.viewstokbahanbakurusak', compact('data', 'title'));
     }
 
     public function viewaddstokbahanbaku()
@@ -56,9 +62,16 @@ class kitchen_controller extends Controller
         $title = 'Add Bahan Baku';
         return view('admin.kitchen.tambahstokbahanbaku', compact('data', 'title'));
     }
+    // public function viewaddstokbahanbakurusak()
+    // {
+    //     $data = stokbahanbaku::all();
+    //     $title = 'Add Bahan Baku Rusak';
+    //     return view('admin.kitchen.tambahstokbahanbakurusak', compact('data', 'title'));
+    // }
     public function viewaddstokbahanbakurusak()
     {
         $data = stokbahanbaku::all();
+
         $title = 'Add Bahan Baku Rusak';
         return view('admin.kitchen.tambahstokbahanbakurusak', compact('data', 'title'));
     }
@@ -98,8 +111,8 @@ class kitchen_controller extends Controller
             $stok = $bahan->stokbahan;
             $butuh = $bahan->pivot->jumlah_dibutuhkan;
 
-            // $porsi = floor($stok / $butuh);
-            // $jumlahPorsi[] = $porsi;
+            $porsi = floor($stok / $butuh);
+            $jumlahPorsi[] = $porsi;
         }
 
         if ($jumlahPorsi == null)
@@ -116,21 +129,21 @@ class kitchen_controller extends Controller
     public function editdetailmenu($id)
     {
         // $idmenu = $id;
-        $data = resep::where('id',$id)->with('stokbahanbaku')->first();
+        $data = resep::where('id', $id)->with('stokbahanbaku')->first();
         // $data = resep::where('id_menu', $id  && 'id',$id)->first();
         // dd($data);
         return view('admin.kitchen.editdetailmenu', compact('data'));
     }
-        public function updatedetailmenu(Request $request, $id)
+    public function updatedetailmenu(Request $request, $id)
     {
         // $data = resep::where('id_menu', $id)->with('stokbahanbaku')->get();
         $data = resep::find($id);
         $data->jumlah_dibutuhkan = $request->jumlah_dibutuhkan;
         $data->save();
         return redirect('adminmenu')->with('success', 'Updated!');
-
     }
-    public function deletedetailmenu($id){
+    public function deletedetailmenu($id)
+    {
         $data = resep::find($id);
         $data->delete();
         return redirect('adminmenu');
@@ -175,11 +188,17 @@ class kitchen_controller extends Controller
             'stokbahan' => $request->stokbahan,
             'satuan' => $request->satuan,
             'status'   => $request->status,
-            'expdate'   => $request->expdate,
+            'date'   => $request->date,
         ];
+
+        $data2 = stokbahanbaku::find($request->namabahan);
+        // dd($data2);
+        $data2->stokbahan -= $request->stokbahan;
+        $data2->save();
+
         // dd($data);
-        stokbahanbaku::create($data);
-        return redirect('viewstokbahanbaku');
+        stokbahanbakurusak::create($data);
+        return redirect('viewstokbahanbakurusak');
     }
 
 
@@ -261,10 +280,43 @@ class kitchen_controller extends Controller
     }
     public function updatekitchen(Request $request, $id)
     {
+        // dd($id);
         $data = pesanan::find($id);
+        // dd($data);
         $data->status_pesanan = 'serve';
         $data->save();
-        return redirect()->route('viewkitchen');
+
+        $iddetailpesanan = $data->id_detailpesanan;
+
+$data2 = pesanandetail::where('id_pesanan', $iddetailpesanan)->get();
+
+foreach ($data2 as $pesanan) {
+    $makananId = $pesanan->id_menu;
+    $jumlahTerjual = $pesanan->jumlah; 
+
+    $makanan = makanan::with('stokbahanbaku')->find($makananId);
+
+    if (!$makanan) continue; 
+
+    foreach ($makanan->stokbahanbaku as $bahan) {
+        $butuh = $bahan->pivot->jumlah_dibutuhkan;
+        $jumlahDipakai = $butuh * $jumlahTerjual;
+
+        $bahan->stokbahan -= $jumlahDipakai;
+        $bahan->save();
+
+        logpemakaianbahanbaku::create([
+            'id_menu' => $makanan->id,
+            'id_stokbahanbaku' => $bahan->id,
+            'jumlah_dipakai' => $jumlahDipakai,
+            'jumlah_porsi' => $jumlahTerjual,
+            'tanggal_pemakaian' => now(),
+        ]);
+    }
+}
+
+return redirect()->route('viewkitchen');
+
     }
     public function updatestokbahanbaku(Request $request, $id)
     {

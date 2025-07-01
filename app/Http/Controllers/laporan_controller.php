@@ -8,6 +8,7 @@ use App\Models\makanan;
 use App\Models\pesanan;
 use App\Models\pesanandetail;
 use App\Models\stokbahanbaku;
+use App\Models\stokbahanbakurusak;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,7 +40,7 @@ class laporan_controller extends Controller
         //     ->with('makanan')
         //     ->get();
 
-        
+
         $menuIds = makanan::where('jenis', 'makanan')->pluck('id');
         $makanan = pesanandetail::whereIn('id_menu', $menuIds)->with('makanan')->get();
         $menuminuman = makanan::where('jenis', 'minuman')->pluck('id');
@@ -62,12 +63,17 @@ class laporan_controller extends Controller
 
         // dd($makanan);
 
-        return view('admin.laporan.viewlaporanpenjualan', compact('title', 'data', 'makanan','minuman','dessert', 'totalpesanan', 'totalharga'));
+        return view('admin.laporan.viewlaporanpenjualan', compact('title', 'data', 'makanan', 'minuman', 'dessert', 'totalpesanan', 'totalharga'));
     }
 
     public function viewstokbarangexpired()
     {
-        $data = stokbahanbaku::whereNot('status', null)->get();
+        $data1 = stokbahanbaku::whereNot('expired', null)->get();
+        $data2 = stokbahanbakurusak::get();
+
+        $data = $data1->merge($data2);
+
+        // dd($data);
         $title = 'Stok Barang Expired';
         return view('admin.laporan.viewlaporanexpired', compact('data', 'title'));
     }

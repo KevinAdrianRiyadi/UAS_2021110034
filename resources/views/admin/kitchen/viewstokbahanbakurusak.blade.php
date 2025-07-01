@@ -1,68 +1,58 @@
 @extends('pelanggan.layout.index')
 @section('content')
 
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.4.4/dist/css/tempus-dominus.min.css"
+            rel="stylesheet">
+
+    </head>
+
     <body>
         <div class="container mt-5">
-            <h2 class="mb-4">Menu</h2>
+            <h2 class="mb-4">Stok Bahan Baku Rusak</h2>
 
-            {{-- <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button class="btn btn-primary mb-2">Logout</button>
-    </form> --}}
-
-            <a href="/pesananviewadmin">
-                <button class="btn btn-primary mb-3">List Pesanan</button>
+            <a href="/viewstokbahanbaku">
+                <button class="btn btn-primary mb-3">View Stok Bahan Baku</button>
             </a>
-            <a href="/tambahmakananview">
-                <button class="btn btn-primary mb-3">Add Item Menu</button>
+            <a href="/viewaddstokbahanbakurusak">
+                <button class="btn btn-primary mb-3">Add Stok Bahan Baku Rusak</button>
             </a>
-            <a href="/updatestok">
-                <button class="btn btn-primary mb-3">Update Stok</button>
-            </a>
-
-
-            {{-- <a href="/listitemreorder">
-                <button class="btn btn-primary mb-3">List Item to Reorder</button>
-            </a> --}}
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nama</th>
-                        <th>Kategori</th>
-                        <th>Jenis</th>
-                        <th>Harga</th>
-                        <th>Stok</th>
-                        {{-- <th>Photo</th> --}}
+                        {{-- <th>ID</th> --}}
+                        <th>Nama Bahan Baku</th>
+                        <th>Total Bahan Baku</th>
+                        <th>Date</th>
+                        <th>Satuan</th>
+                        <th>Status</th>
+                        {{-- <th>Expired</th> --}}
+                        {{-- <th>Action</th> --}}
                     </tr>
                 </thead>
                 <tbody id="itemTable">
                     @foreach ($data as $item)
                         <tr>
-                            {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->kategori }}</td>
-                            <td>{{ $item->jenis }}</td>
-                            <td>{{ $item->harga }}</td>
-                            <td>{{ $item->stok }}</td>
-                            {{-- <td><img src="{{'storage/'.($item->photo)}}" alt="" class="w-25" srcset=""> --}}
-                            {{-- <p class="text-black"></p></td> --}}
-                            <td>
+                            {{-- <td>{{ $item->id }}</td> --}}
+                            <td>{{ $item->namabahan }}</td>
+                            <td>{{ $item->stokbahan }}</td>
+                            <td>{{ $item->date }}</td>
+                            <td>{{ $item->satuan }}</td>
+                            <td>{{ $item->status }}</td>
+                            {{-- <td>{{ $item->expired }}</td> --}}
+                            {{-- <td>
                                 <div class="d-flex ">
-                                    {{-- @dd($item->jenis) --}}
-                                    <a href="{{ url('editmakanan/' . $item->id) }}" class="btn btn-primary me-2">Edit</a>
-                                    <a href="{{ url('viewdetailmenu/' . $item->id) }}"
-                                        class="btn btn-primary me-2">Detail</a>
-                                    <form action="{{ url('deletemakanan/' . $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    <a href="{{ url('editstokbahanbaku/' . $item->id) }}"
+                                        class="btn btn-primary me-2">Edit</a>
+                                    <form action="{{ url('deletestokbahanbaku/' . $item->id) }}" method="POST"
+                                        style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button class="btn btn-danger btn-md">Delete</button>
                                     </form>
-
                                 </div>
-                            </td>
+                            </td> --}}
                             {{-- <td>
                         <button class="btn btn-warning btn-sm" onclick="editItem({{ $item->id }})">Edit</button>
                         <form action="{{ route('items.destroy', $item) }}" method="POST" style="display:inline;">

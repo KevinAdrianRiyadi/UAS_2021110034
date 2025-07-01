@@ -18,7 +18,7 @@
 
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">Tambah Stok Bahan</h2>
+        <h2 class="mb-4">Tambah Stok Bahan Baku</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -33,11 +33,11 @@
         <form action="{{ route('addstokbahanbaku') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Nama Bahanbaku</label>
+                <label for="name" class="form-label">Nama Bahan Baku</label>
                 <input type="text" class="form-control" id="namabahan" name="namabahan" required>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Stok Bahanbaku</label>
+                <label for="name" class="form-label">Stok Bahan Baku</label>
                 <input type="number" class="form-control" id="stokbahan" name="stokbahan" required>
             </div>
             <div class="mb-3">
@@ -45,12 +45,12 @@
                 <select name="satuan" id="satuan">
                     <option value="">--select satuan--</option>
                     <option value="kg">kg</option>
-                    <option value="     liter">liter</option>
+                    <option value="liter">liter</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Harga</label>
-                <input type="text" class="text-black" placeholder="masukkan harga" name="harga">
+                <input type="number" class="text-black" placeholder="masukkan harga" name="harga">
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Exp Date</label>

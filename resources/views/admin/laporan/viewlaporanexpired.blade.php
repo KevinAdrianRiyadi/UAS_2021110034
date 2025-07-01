@@ -16,7 +16,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        {{-- <th>ID</th> --}}
                         <th>Nama Bahan</th>
                         <th>Stok Bahan</th>
                         <th>Exp Date</th>
@@ -28,12 +28,17 @@
                 <tbody id="itemTable">
                     @foreach ($data as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            {{-- <td>{{ $item->id }}</td> --}}
                             <td>{{ $item->namabahan }}</td>
                             <td>{{ $item->stokbahan }}</td>
                             <td>{{ $item->expdate }}</td>
                             <td>{{ $item->satuan }}</td>
-                            <td>{{ $item->status }}</td>
+                            <td>@if($item->status == null)
+                                {{ $item->expired }}
+                            @else
+                            {{$item->status}}                               
+                            @endif
+                            </td>
                             {{-- <td>
                                 <div class="d-flex ">
                                     <a href="{{ url('editmakanan/' . $item->id) }}"

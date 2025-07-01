@@ -21,7 +21,7 @@
 
                         <th>Total Harga</th>
                         <th>No Kamar</th>
-                        <th>Notes</th>
+                        {{-- <th>Notes</th> --}}
                         <th>Status Pembayaran</th>
                         <th>Status Pesanan</th>
                     </tr>
@@ -41,7 +41,7 @@
                             
                             <td>{{ $item->total_harga }}</td>
                             <td>{{ $item->no_kamar }}</td>
-                            <td>{{ $item->notes }}</td>
+                            {{-- <td>{{ $item->notes }}</td> --}}
                             <td>{{ $item->status_pembayaran }}</td>
                             <td>{{ $item->status_pesanan }}</td>
                             {{-- <td>{{ $item->stok }}</td> --}}

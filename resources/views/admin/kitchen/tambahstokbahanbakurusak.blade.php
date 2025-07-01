@@ -18,7 +18,7 @@
 
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">Tambah Stok Bahan Rusak</h2>
+        <h2 class="mb-4">Tambah Bahan Baku Rusak</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -33,11 +33,16 @@
         <form action="{{ route('addstokbahanbakurusak') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Nama Bahanbaku</label>
-                <input type="text" class="form-control" id="namabahan" name="namabahan" required>
+                <label for="name" class="form-label">Nama Bahan Baku</label>
+                {{-- <input type="text" class="form-control" id="namabahan" name="namabahan" required> --}}
+                <select name="namabahan" id="namabahan">
+                    @foreach($data as $item)
+                    <option value="{{$item->id}}">{{$item->namabahan}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Stok Bahanbaku</label>
+                <label for="name" class="form-label">Jumlah Bahan Baku</label>
                 <input type="text" class="form-control" id="stokbahan" name="stokbahan" required>
             </div>
             <div class="mb-3">
@@ -52,15 +57,20 @@
                 <label for="name" class="form-label">Status</label>
                 <select name="status" id="status">
                     <option value="">--select status--</option>
-                    <option value="rusak">rusak</option>
-                    <option value="tumpah">tumpah</option>
-                    <option value="jatuh">jatuh</option>
+                    <option value="rusak">Rusak</option>
+                    <option value="tumpah">Tumpah</option>
+                    <option value="jatuh">Jatuh</option>
+                    <option value="jatuh">Basi</option>
                 </select>
             </div>
-                 <div class="mb-3">
+            <div class="mb-3">
+            <label for="name" class="form-label">Date</label>
+            <input type="text" class="datepicker text-black" placeholder="selectdate" name="date">
+            </div>
+                 {{-- <div class="mb-3">
                 <label for="name" class="form-label">Exp Date</label>
             <input type="text" class="datepicker text-black" placeholder="selectexpdate" name="expdate">
-            </div>
+            </div> --}}
 
 
             <button type="submit" class="btn btn-primary">Create Item</button>

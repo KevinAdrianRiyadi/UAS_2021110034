@@ -3,7 +3,7 @@
 {{-- @dd($dataid) --}}
     <body>
         <div class="container mt-5">
-            <h2 class="mb-4 text-center">DetailPesanan</h2>
+            <h2 class="mb-4 text-center">Pilih Metode Pembayaran</h2>
             {{-- @dd($id) --}}
             <form action="{{ route('pay',$dataid) }}" method="POST">
                 @method('PUT')
@@ -12,10 +12,10 @@
                     @if(isset($data->makanan)  && $data->makanan->first())
                     <p class="text-black">Makanan: {{ $data->makanan->first()->nama }}</p>
                     @endif
-                    <p class="text-black">TotalHarga: {{ $data->total_harga }}</p>
+                    <p class="text-black">Total Harga: {{ $data->total_harga }}</p>
                     <div class="m-4">
-                        <select name="paymethod" id="paymethod">
-                            <option value="null">Select pay method</option>
+                        <select name="paymethod" id="paymethod" required aria-placeholder="Select Payment Method">
+                            {{-- <option value="null">Select payment method</option> --}}
                             <option value="VA">Virtual Account</option>
                             <option value="EDC">EDC</option>
                             <option value="RoomCharge">Room Charge</option>

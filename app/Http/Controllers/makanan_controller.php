@@ -69,6 +69,32 @@ class makanan_controller extends Controller
         $data->delete();
         return redirect()->route('adminmenu');
     }
+    
+    public function checkstok()
+    {
+        $makananList = makanan::with('stokbahanbaku')->get();
+
+        foreach ($makananList as $makanan) {
+            $jumlahPorsi = [];
+
+            foreach ($makanan->stokbahanbaku as $bahan) {
+                $stok = $bahan->stokbahan;
+                $butuh = $bahan->pivot->jumlah_dibutuhkan;
+
+                if ($butuh > 0) {
+                    $porsi = floor($stok / $butuh);
+                    $jumlahPorsi[] = $porsi;
+                }
+            }
+
+            $minPorsi = count($jumlahPorsi) > 0 ? min($jumlahPorsi) : 0;
+
+            // ✅ Update `stok` field in makanan table
+            $makanan->stok = $minPorsi;
+            $makanan->save();
+        }
+        return back();
+    }
     public function updatemakanan(Request $request, $id)
     {
         // dd($request);

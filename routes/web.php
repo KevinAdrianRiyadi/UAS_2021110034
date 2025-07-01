@@ -91,6 +91,7 @@ Route::post('/ordertosupplier', [supplier_controller::class, 'ordertosupplier'])
 Route::put('/updateordersupplier/{id}', [supplier_controller::class, 'updateordersupplier'])->name('updateordersupplier');
 
 Route::get('/viewstokbahanbaku', [kitchen_controller::class, 'viewstokbahanbaku'])->name('viewstokbahanbaku');
+Route::get('/viewstokbahanbakurusak', [kitchen_controller::class, 'viewstokbahanbakurusak'])->name('viewstokbahanbakurusak');
 Route::get('/editstokbahanbaku/{id}', [kitchen_controller::class, 'editstokbahanbaku'])->name('editstokbahanbaku');
 Route::put('/updatestokbahanbaku/{id}', [kitchen_controller::class, 'updatestokbahanbaku'])->name('updatestokbahanbaku');
 Route::delete('/deletestokbahanbaku/{id}', [kitchen_controller::class, 'deletestokbahanbaku'])->name('deletestokbahanbaku');
@@ -106,6 +107,7 @@ Route::post('/addstokbahanbaku', [kitchen_controller::class, 'addstokbahanbaku']
 Route::post('/addstokbahanbakurusak', [kitchen_controller::class, 'addstokbahanbakurusak'])->name('addstokbahanbakurusak');
 Route::post('/tambahresep', [kitchen_controller::class, 'tambahresep'])->name('tambahresep');
 
+Route::get('/updatestok', [makanan_controller::class, 'checkstok'])->name('checkstok');
 
 Route::get('/viewstokbarangexpired', [laporan_controller::class, 'viewstokbarangexpired'])->name('viewstokbarangexpired');
 Route::get('/viewlaporanpembelian', [laporan_controller::class, 'viewlaporanpembelian'])->name('viewlaporanpembelian');

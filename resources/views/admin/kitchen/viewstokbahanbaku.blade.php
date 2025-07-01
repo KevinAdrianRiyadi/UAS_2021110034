@@ -13,7 +13,7 @@
             <h2 class="mb-4">Stok Bahan Baku</h2>
 
             <a href="/viewaddstokbahanbaku">
-                <button class="btn btn-primary mb-3">Add stok bahanbaku</button>
+                <button class="btn btn-primary mb-3">Add Stok Bahan Baku</button>
             </a>
 
             <a href="/checkexpired">
@@ -22,8 +22,8 @@
             <a href="/listbahanbakutoreorder">
                 <button class="btn btn-primary mb-3">List Bahan Baku to Reorder</button>
             </a>
-            <a href="/viewaddstokbahanbakurusak">
-                <button class="btn btn-primary mb-3">Add stok bahanbaku rusak</button>
+            <a href="/viewstokbahanbakurusak">
+                <button class="btn btn-primary mb-3">List Bahan Baku Rusak</button>
             </a>
             <table class="table table-striped">
                 <thead>
@@ -33,7 +33,7 @@
                         <th>Stok Bahan</th>
                         <th>Exp Date</th>
                         <th>Satuan</th>
-                        <th>Status</th>
+                        {{-- <th>Status</th> --}}
                         <th>Expired</th>
                         <th>Action</th>
                     </tr>
@@ -46,7 +46,7 @@
                             <td>{{ $item->stokbahan }}</td>
                             <td>{{ $item->expdate }}</td>
                             <td>{{ $item->satuan }}</td>
-                            <td>{{ $item->status }}</td>
+                            {{-- <td>{{ $item->status }}</td> --}}
                             <td>{{ $item->expired }}</td>
                             <td>
                                 <div class="d-flex ">

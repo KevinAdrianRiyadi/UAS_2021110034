@@ -38,7 +38,8 @@
                 <li class="list-group-item">
                     <strong>{{ $item->makanan->nama ?? 'Menu tidak tersedia' }}</strong><br>
                     Jumlah: {{ $item->jumlah }}<br>
-                    Catatan: {{ $item->catatan ?? '-' }}
+                    Catatan: {{ $item->catatan ?? '-' }}<br>
+                    Total Harga: {{ $item->totalharga ?? '-' }}
                 </li>
             @endforeach
         </ul>

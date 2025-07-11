@@ -30,15 +30,24 @@ class supplier_controller extends Controller
     public function ordertosupplier(Request $request)
     {
         // dd($request);
+
+        $idpesan = bahanbaku::count();
+        $today = Carbon::today()->format('Ym');
+        $customID = '' . $today . $idpesan;
+        // $harga = makanan::where('id', $request->input('makanan_id'))->value('harga');
+        
         $title = 'ordertosupplier';
         Carbon::setLocale('id');
 
         $databahanbaku = stokbahanbaku::where('id', $request->id_stokbahanbaku)->first();
+        $iddatabahanbaku = stokbahanbaku::where('id', $request->id_stokbahanbaku)->value('id');
         $harga = $databahanbaku->harga;
         $jumlah = $request->input('jumlah');
         $totalharga = $harga * $jumlah;
         // dd($totalharga);
         $data = [
+            'id_stokbahanbaku'=> $iddatabahanbaku,
+            'id_order' =>  $today . $idpesan,
             'nama' => $databahanbaku->namabahan,
             'jumlah' => $jumlah,
             'satuan' => $databahanbaku->satuan,
@@ -47,6 +56,7 @@ class supplier_controller extends Controller
             'total_harga' => $totalharga,
         ];
         // dd($databahanbaku);
+        // dd($data);
         bahanbaku::create($data);
 
         $stokbahan = $databahanbaku->stokbahan;

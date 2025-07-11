@@ -26,7 +26,7 @@
                         @endforeach
                     </div>
                     <div class="col-4">
-                        <h4 class="font-bold">minuman yang terjual:</h4>
+                        <h4 class="font-bold">Minuman yang terjual:</h4>
                         @foreach ($minuman as $item)
                             <li>{{ optional($item->makanan)->nama ?? ' ' }} - Jumlah Terjual: {{ $item->jumlah }}</li>
                             <p>Total Pendapatan : {{ 'Rp ' . number_format($item->totalharga, 0, ',', '.') }}</p>

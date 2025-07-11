@@ -52,6 +52,7 @@ class kitchen_controller extends Controller
     public function viewstokbahanbakurusak()
     {
         $data = stokbahanbakurusak::all();
+        // dd($data);
         $title = 'Bahan Baku Rusak';
         return view('admin.kitchen.viewstokbahanbakurusak', compact('data', 'title'));
     }
@@ -114,6 +115,7 @@ class kitchen_controller extends Controller
             $porsi = floor($stok / $butuh);
             $jumlahPorsi[] = $porsi;
         }
+        // dd($jumlahPorsi);
 
         if ($jumlahPorsi == null)
             $porsi = 0;
@@ -183,8 +185,9 @@ class kitchen_controller extends Controller
     public function addstokbahanbakurusak(Request $request)
     {
         // dd($request);
+        $namabahan =  stokbahanbaku::where('id',$request->namabahan)->value('namabahan');
         $data = [
-            'namabahan' => $request->namabahan,
+            'namabahan' => $namabahan,
             'stokbahan' => $request->stokbahan,
             'satuan' => $request->satuan,
             'status'   => $request->status,
@@ -192,9 +195,9 @@ class kitchen_controller extends Controller
         ];
 
         $data2 = stokbahanbaku::find($request->namabahan);
-        // dd($data2);
         $data2->stokbahan -= $request->stokbahan;
         $data2->save();
+        // dd($data2);
 
         // dd($data);
         stokbahanbakurusak::create($data);
@@ -224,9 +227,9 @@ class kitchen_controller extends Controller
         $datamakanan = stokbahanbaku::all();
         $title = 'listbahanbakutoreorder';
         $data2 = $datamakanan;
-        $data = stokbahanbaku::where('stokbahan', '<=', 3.00)
-            ->orWhere('status', 'expired')
-            ->get();
+        $data = stokbahanbaku::where('stokbahan', '<=', 25.00)->get();
+            // ->orWhere('expired', 'expired')
+            // ->get();
 
         return view('admin.kitchen.listbahanbakuorder', compact('title', 'data', 'datamakanan'));
     }

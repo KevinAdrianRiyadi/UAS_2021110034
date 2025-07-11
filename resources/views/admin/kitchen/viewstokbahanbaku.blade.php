@@ -41,7 +41,7 @@
                 <tbody id="itemTable">
                     @foreach ($data as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>BB00{{ $item->id }}</td>
                             <td>{{ $item->namabahan }}</td>
                             <td>{{ $item->stokbahan }}</td>
                             <td>{{ $item->expdate }}</td>

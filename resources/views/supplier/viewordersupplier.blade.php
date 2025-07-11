@@ -46,7 +46,7 @@
                     @foreach ($data as $item)
                         <tr>
                             {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->id_order }}</td>
                             <td>{{ $item->tanggal }}</td>
                             <td>{{ $item->nama }}</td>
                             {{-- <td>{{ $item->kategori }}</td> --}}

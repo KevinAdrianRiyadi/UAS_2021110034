@@ -3,7 +3,7 @@
 
     <body>
         <div class="container mt-5">
-            <h2 class="mb-4">List BahanBaku Reorder</h2>
+            <h2 class="mb-4">List Bahan Baku to Reorder</h2>
 
             {{-- <form action="{{ route('logout') }}" method="POST">
         @csrf
@@ -29,22 +29,22 @@
                         <th>Nama Bahan</th>
                         <th>Stok Bahan</th>
                         <th>Satuan</th>
-                        <th>Harga</th>
-                        <th>Expired Date</th>
-                        <th>Status</th>
+                        {{-- <th>Harga</th> --}}
+                        {{-- <th>Expired Date</th> --}}
+                        {{-- <th>Status</th> --}}
                     </tr>
                 </thead>
                 <tbody id="itemTable">
                     @foreach ($data as $item)
                         <tr>
                             {{-- <td>#{{ \Illuminate\Support\Str::padLeft($item->id, 4, 0) }}</td> --}}
-                            <td>{{ $item->id }}</td>
+                            <td>BB00{{ $item->id }}</td>
                             <td>{{ $item->namabahan }}</td>
                             <td>{{ $item->stokbahan }}</td>
                             <td>{{ $item->satuan }}</td>
-                            <td>{{ $item->harga }}</td>
-                            <td>{{ $item->expdate }}</td>
-                            <td>{{ $item->status }}</td>
+                            {{-- <td>{{ $item->harga }}</td> --}}
+                            {{-- <td>{{ $item->expdate }}</td> --}}
+                            {{-- <td>{{ $item->expired }}</td> --}}
                             <td><img src="{{'storage/'.($item->photo)}}" alt="" class="w-25" srcset="">
                             {{-- <p class="text-black"></p></td> --}}
                             <td>

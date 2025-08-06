@@ -88,7 +88,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <h4 for="name" class="form-label"> Stok yang tersedia {{ $porsi }} </h4>
+                {{-- <h4 for="name" class="form-label"> Stok yang tersedia {{ $porsi }} </h4> --}}
 
                 {{-- <a href="/hitungPorsi/{{ $idmenu }}"> Hitung Porsi</a> --}}
 

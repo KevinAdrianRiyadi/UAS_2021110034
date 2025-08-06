@@ -31,6 +31,7 @@
                         <th>ID</th>
                         <th>Nama Bahan</th>
                         <th>Stok Bahan</th>
+                        <th>25% Stok Bahan</th>
                         <th>Exp Date</th>
                         <th>Satuan</th>
                         {{-- <th>Status</th> --}}
@@ -43,7 +44,8 @@
                         <tr>
                             <td>BB00{{ $item->id }}</td>
                             <td>{{ $item->namabahan }}</td>
-                            <td>{{ $item->stokbahan }}</td>
+                            <td>{{ $item->stokbahan }}</td> 
+                            <td>{{ $item->safetystock }}</td> 
                             <td>{{ $item->expdate }}</td>
                             <td>{{ $item->satuan }}</td>
                             {{-- <td>{{ $item->status }}</td> --}}

@@ -3,18 +3,18 @@
 
 <!-- Page Title -->
 <div class="mb-4 d-flex justify-content-between align-items-center">
-    <h4 class="fw-bold">🧾 Daftar Keranjang</h4>
+    <h4 class="fw-bold"> Daftar Keranjang</h4>
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#pesanModal" {{ count($datakeranjang) === 0 ? 'disabled' : '' }}>
-        💳 Lanjutkan ke Pembayaran
+         Lanjutkan ke Pembayaran
     </button>
 </div>
 
 <!-- Cart Table -->
 <div class="table-responsive shadow-sm">
     <table class="table table-hover table-bordered align-middle">
-        <thead class="table-dark text-center">
+        <thead class="table text-center">
             <tr>
                 <th>ID</th>
                 <th>Menu</th>
@@ -58,7 +58,7 @@
         <form action="{{ route('tambahpesanan') }}" method="POST" class="modal-content">
             @csrf
             <div class="modal-header">
-                <h5 class="modal-title" id="pesanModalLabel">📦 Informasi Pemesan</h5>
+                <h5 class="modal-title" id="pesanModalLabel">Informasi Pemesan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
             </div>
             <div class="modal-body">
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success w-100">💳 Lanjutkan ke Pembayaran</button>
+                <button type="submit" class="btn btn-success w-100">Lanjutkan ke Pembayaran</button>
             </div>
         </form>
     </div>

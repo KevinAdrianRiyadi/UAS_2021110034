@@ -16,9 +16,9 @@
             <a href="/tambahmakananview">
                 <button class="btn btn-primary mb-3">Add Item Menu</button>
             </a>
-            <a href="/updatestok">
+            {{-- <a href="/updatestok">
                 <button class="btn btn-primary mb-3">Update Stok</button>
-            </a>
+            </a> --}}
 
 
             {{-- <a href="/listitemreorder">
@@ -32,7 +32,7 @@
                         <th>Kategori</th>
                         <th>Jenis</th>
                         <th>Harga</th>
-                        <th>Stok</th>
+                        {{-- <th>Stok</th> --}}
                         {{-- <th>Photo</th> --}}
                     </tr>
                 </thead>
@@ -45,7 +45,7 @@
                             <td>{{ $item->kategori }}</td>
                             <td>{{ $item->jenis }}</td>
                             <td>{{ $item->harga }}</td>
-                            <td>{{ $item->stok }}</td>
+                            {{-- <td>{{ $item->stok }}</td> --}}
                             {{-- <td><img src="{{'storage/'.($item->photo)}}" alt="" class="w-25" srcset=""> --}}
                             {{-- <p class="text-black"></p></td> --}}
                             <td>
